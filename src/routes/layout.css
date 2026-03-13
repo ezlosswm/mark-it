@@ -54,13 +54,20 @@
 	--color-power-200: #94a3b8;
 }
 
+:root {
+	h1,
+	h2 {
+		@apply font-oxygen;
+	}
+}
+
 @layer {
 	.pill {
 		@apply inline-block rounded-full bg-cyprus-400/10 px-4 py-1.5 text-sm font-bold tracking-wider uppercase;
 	}
 
 	.btn {
-		@apply w-full cursor-pointer rounded-2xl px-10 py-5 text-lg font-bold;
+		@apply inline-block w-full cursor-pointer rounded-2xl px-10 py-5 text-lg font-bold;
 	}
 
 	.btn-primary {
@@ -72,6 +79,10 @@
 	}
 
 	.hero-gradient {
-		background: radial-gradient(circle at 50% 50%, rgba(0, 71, 68, 0.05) 0%, rgba(245, 248, 248, 1) 100%);
+		background: radial-gradient(
+			circle at 50% 50%,
+			rgba(0, 71, 68, 0.05) 0%,
+			rgba(245, 248, 248, 1) 100%
+		);
 	}
 }
