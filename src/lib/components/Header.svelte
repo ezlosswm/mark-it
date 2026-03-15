@@ -12,8 +12,8 @@
 		</a>
 
 		<a
-			href="/"
-			class="cursor-pointer rounded-3xl bg-cyprus-400 px-6 py-2.5 font-bold text-cloud-100 transition-opacity hover:opacity-90"
+			href="/register"
+			class="cursor-pointer rounded-3xl bg-cyprus-400 px-6 py-2 text-cloud-100 transition-opacity hover:opacity-90"
 		>
 			Sign Up
 		</a>

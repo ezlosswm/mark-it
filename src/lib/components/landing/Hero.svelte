@@ -11,8 +11,8 @@
 		</p>
 		<div class="flex flex-col items-center gap-4 pt-4 sm:flex-row">
 			<a
-				href="/auth/register"
-				class="btn btn-primary shadow-lg shadow-cyprus-400/20 transition-transform hover:scale-105"
+				href="/register"
+				class="btn btn-primary text-lg shadow-lg shadow-cyprus-400/20 transition-transform hover:scale-105"
 			>
 				Get Started - It's Free
 			</a>

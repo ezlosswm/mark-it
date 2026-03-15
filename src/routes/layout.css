@@ -66,12 +66,20 @@
 		@apply inline-block rounded-full bg-cyprus-400/10 px-4 py-1.5 text-sm font-bold tracking-wider uppercase;
 	}
 
+	.form-label {
+		@apply sr-only px-1 text-sm font-semibold text-power-400;
+	}
+
+	.input {
+		@apply w-full rounded-3xl border border-cyprus-400/10 bg-cyprus-400/5 transition-colors outline-none focus:border-cyprus-400 focus:bg-cloud-50;
+	}
+
 	.btn {
-		@apply inline-block w-full cursor-pointer rounded-2xl px-10 py-5 text-lg font-bold;
+		@apply w-full cursor-pointer rounded-3xl px-10 py-4 font-bold;
 	}
 
 	.btn-primary {
-		@apply bg-cyprus-400 text-cloud-100;
+		@apply bg-cyprus-400 text-cloud-100 transition-colors hover:opacity-90;
 	}
 
 	.btn-secondary {

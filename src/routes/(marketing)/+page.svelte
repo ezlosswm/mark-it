@@ -14,7 +14,7 @@
 	<link rel="icon" href="/favicon.ico" />
 </svelte:head>
 
-<div class="mx-auto max-w-[1440px] px-6">
+<div class="mx-auto max-w-360 px-6">
 	<Hero />
 
 	<section class="space-y-32">

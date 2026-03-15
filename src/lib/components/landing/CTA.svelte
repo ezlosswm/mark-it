@@ -5,7 +5,7 @@
 		web.
 	</p>
 
-	<a href="/auth/register" class="btn btn-secondary transition-all hover:scale-105"
+	<a href="/register" class="btn btn-secondary inline-block text-lg transition-all hover:scale-105"
 		>Create Free Account</a
 	>
 </div>
