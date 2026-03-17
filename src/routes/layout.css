@@ -59,6 +59,11 @@
 	h2 {
 		@apply font-oxygen;
 	}
+
+	button,
+	a {
+		@apply cursor-pointer font-oxygen;
+	}
 }
 
 @layer {
@@ -75,7 +80,11 @@
 	}
 
 	.btn {
-		@apply w-full cursor-pointer rounded-3xl px-10 py-4 font-bold;
+		@apply w-full rounded-3xl px-8 py-4 font-bold;
+	}
+
+	.btn-accent {
+		@apply bg-cyprus-400/10 transition-colors hover:bg-cyprus-400/20;
 	}
 
 	.btn-primary {
