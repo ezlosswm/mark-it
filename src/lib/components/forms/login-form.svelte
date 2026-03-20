@@ -8,7 +8,7 @@
 			<label for="" class="form-label"> Email </label>
 
 			<div class="relative">
-				<Mail class="absolute top-1/2 left-4 -translate-y-1/2 text-cyprus-400/40" />
+				<Mail class="input-icon" />
 				<input type="email" class="input py-4 pr-4 pl-12" placeholder="carlos@example.com" />
 			</div>
 		</div>
@@ -22,7 +22,7 @@
 			</div>
 
 			<div class="relative">
-				<Lock class="absolute top-1/2 left-4 -translate-y-1/2 text-cyprus-400/40" />
+				<Lock class="input-icon" />
 				<input type="text" class="input py-4 pr-4 pl-12" placeholder="••••••••" />
 			</div>
 		</div>

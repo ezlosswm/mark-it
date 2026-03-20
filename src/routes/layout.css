@@ -51,7 +51,7 @@
 	--color-power-400: #334155;
 	--color-power-300: #475569;
 	--color-power-200: #64748b;
-	--color-power-200: #94a3b8;
+	--color-power-100: #94a3b8;
 }
 
 :root {
@@ -77,6 +77,10 @@
 
 	.input {
 		@apply w-full rounded-3xl border border-cyprus-400/10 bg-cyprus-400/5 transition-colors outline-none focus:border-cyprus-400 focus:bg-cloud-50;
+	}
+
+	.input-icon {
+		@apply absolute top-1/2 left-4 -translate-y-1/2 text-cyprus-400/40;
 	}
 
 	.btn {

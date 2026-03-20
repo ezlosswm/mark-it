@@ -1,8 +1,6 @@
 <script lang="ts">
 	import { BookMarked } from '@lucide/svelte';
 	import { page } from '$app/state';
-
-	console.log('Page: ', page.url.pathname);
 </script>
 
 <header class="sticky top-0 z-40 border-b border-cyprus-400/10 bg-cloud-100 p-6">
@@ -16,12 +14,12 @@
 
 		{#if page.url.pathname === '/register'}
 			<div class="space-x-3">
-				<span>Already have an account? </span>
+				<span class="hidden md:inline-block">Already have an account? </span>
 				<a href="/login" class="btn-accent rounded-3xl px-6 py-2 font-bold"> Log In </a>
 			</div>
 		{:else if page.url.pathname === '/login'}
 			<div class="space-x-1">
-				<span>New to MarkIt? </span>
+				<span class="hidden md:inline-block">New to MarkIt? </span>
 				<a href="/register" class="font-semibold hover:underline"> Create an account </a>
 			</div>
 		{:else}
