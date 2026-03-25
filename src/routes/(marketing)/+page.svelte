@@ -17,12 +17,12 @@
 <div class="mx-auto max-w-360 px-6">
 	<Hero />
 
-	<section class="space-y-32">
+	<section class="space-y-32 py-16">
 		<Features />
 	</section>
 </div>
 
-<section class="bg-cyprus-400 py-24 text-cloud-100">
+<section class="bg-primary py-24 text-background">
 	<div class="mx-auto max-w-4xl px-6 py-24 text-center md:px-20 lg:px-40">
 		<CTA />
 	</div>

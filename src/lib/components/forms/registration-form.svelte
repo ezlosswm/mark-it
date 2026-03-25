@@ -1,5 +1,6 @@
 <script>
 	import { ArrowRight, Lock, Mail, User } from '@lucide/svelte';
+	import Button from '../ui/button/Button.svelte';
 </script>
 
 <form action="">
@@ -8,7 +9,7 @@
 			<label for="" class="form-label"> Full Name </label>
 
 			<div class="relative">
-				<User class="input-icon" />
+				<User class="input-icon size-5" />
 				<input type="text" class="input py-4 pr-4 pl-12" placeholder="John Doe" />
 			</div>
 		</div>
@@ -17,7 +18,7 @@
 			<label for="" class="form-label"> Email </label>
 
 			<div class="relative">
-				<Mail class="input-icon" />
+				<Mail class="input-icon size-5" />
 				<input type="email" class="input py-4 pr-4 pl-12" placeholder="carlos@example.com" />
 			</div>
 		</div>
@@ -26,17 +27,15 @@
 			<label for="" class="form-label"> Password </label>
 
 			<div class="relative">
-				<Lock class="input-icon" />
+				<Lock class="input-icon size-5" />
 				<input type="text" class="input py-4 pr-4 pl-12" placeholder="••••••••" />
 			</div>
 		</div>
 
-		<button class="btn btn-primary group flex items-center justify-center gap-2">
-			<span> Create Account </span>
-			<ArrowRight
-				class="size-5 transition-transform group-hover:size-4 group-hover:translate-x-1"
-			/>
-		</button>
+		<Button>
+			Create Account
+			<ArrowRight class="size-5 transition-transform group-hover:translate-x-1" />
+		</Button>
 	</div>
 </form>
 
@@ -48,7 +47,7 @@
 	<div class="h-px flex-1 bg-power-200/25"></div>
 </div>
 
-<button class="btn btn-secondary group flex items-center justify-center gap-2">
+<Button variant="secondary">
 	<img src="./assets/google-color.svg" alt="Google color icon" />
-	<span> Sign up with Google </span>
-</button>
+	Sign up with Google
+</Button>

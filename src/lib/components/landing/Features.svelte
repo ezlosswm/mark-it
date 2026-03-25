@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { ArrowRight, BadgeAlert, Bot, LayoutDashboard, Search, SearchCode } from '@lucide/svelte';
 	import FeatureItem, { type Feature } from './FeatureItem.svelte';
+	import Button from '../ui/button/Button.svelte';
 
 	const features: Feature[] = [
 		{
@@ -56,9 +57,9 @@
 
 <FeatureItem feature={features[1]}>
 	<div class="relative">
-		<Search class="absolute top-4 left-4 size-5 text-cyprus-400/40" />
+		<Search class="input-icon size-5" />
 		<input
-			class="flex w-full items-center gap-4 rounded-xl border border-cyprus-400/5 bg-cloud-50 p-4 pl-12 text-sm shadow-sm"
+			class="flex w-full items-center gap-4 rounded-xl border border-border bg-background p-4 pl-12 text-sm shadow-sm"
 			placeholder="Search 'Design system articles'..."
 			disabled
 		/>
@@ -66,8 +67,13 @@
 </FeatureItem>
 
 <FeatureItem feature={features[2]}>
-	<a href="/" class="flex gap-2 font-bold transition-transform duration-400 hover:translate-x-2">
-		Go To Your Board
+	<Button
+		href="/"
+		class="justify-start p-0 duration-400 hover:translate-x-2"
+		size="lg"
+		variant="link"
+	>
+		Go to Your Board
 		<ArrowRight />
-	</a>
+	</Button>
 </FeatureItem>

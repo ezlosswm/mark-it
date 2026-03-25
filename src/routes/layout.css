@@ -41,17 +41,68 @@
 	--font-oxygen: 'Oxygen', system-ui, san-serif;
 	--font-source-sans: 'Source Sans 3', system-ui, sans-serif;
 
-	--color-cyprus-400: #004643;
-	--color-cyprus-300: #45a19c;
+	/* Teal / Deep Green */
+	--color-cyprus-50: oklch(0.95 0.02 180);
+	--color-cyprus-100: oklch(0.88 0.04 180);
+	--color-cyprus-200: oklch(0.75 0.06 180);
+	--color-cyprus-300: oklch(0.62 0.08 180);
+	--color-cyprus-400: oklch(0.5 0.09 180); /* original */
+	--color-cyprus-500: oklch(0.42 0.09 180);
+	--color-cyprus-600: oklch(0.35 0.08 180);
+	--color-cyprus-700: oklch(0.28 0.07 180);
+	--color-cyprus-800: oklch(0.22 0.06 180);
+	--color-cyprus-900: oklch(0.16 0.05 180);
 
-	--color-cloud-200: #fafafa;
-	--color-cloud-100: #f5f8f8;
-	--color-cloud-50: #ffffff;
+	/* Soft Teal */
+	--color-accent-50: oklch(0.95 0.03 185);
+	--color-accent-100: oklch(0.88 0.05 185);
+	--color-accent-200: oklch(0.78 0.07 185);
+	--color-accent-300: oklch(0.68 0.09 185);
+	--color-accent-400: oklch(0.6 0.1 185); /* original */
+	--color-accent-500: oklch(0.52 0.1 185);
+	--color-accent-600: oklch(0.45 0.09 185);
+	--color-accent-700: oklch(0.38 0.08 185);
+	--color-accent-800: oklch(0.3 0.07 185);
+	--color-accent-900: oklch(0.22 0.06 185);
 
-	--color-power-400: #334155;
-	--color-power-300: #475569;
-	--color-power-200: #64748b;
-	--color-power-100: #94a3b8;
+	/* Cloud */
+	--color-cloud-50: oklch(1 0 0); /* white */
+	--color-cloud-100: oklch(0.97 0.01 200);
+	--color-cloud-200: oklch(0.94 0.01 200);
+	--color-cloud-300: oklch(0.9 0.01 200);
+	--color-cloud-400: oklch(0.85 0.01 200);
+	--color-cloud-500: oklch(0.75 0.01 200);
+	--color-cloud-600: oklch(0.65 0.01 200);
+	--color-cloud-700: oklch(0.55 0.01 200);
+	--color-cloud-800: oklch(0.45 0.01 200);
+	--color-cloud-900: oklch(0.35 0.01 200);
+
+	/* Slate / UI Text Colors */
+	--color-power-50: oklch(95.006% 0.0098 253.018 / 0.25); /* card only */
+	--color-power-100: oklch(0.88 0.02 250);
+	--color-power-200: oklch(0.78 0.03 250); /* ~#94a3b8 */
+	--color-power-300: oklch(0.68 0.04 250); /* ~#64748b */
+	--color-power-400: oklch(0.58 0.04 250); /* ~#475569 */
+	--color-power-500: oklch(0.48 0.04 250); /* ~#334155 */
+	--color-power-600: oklch(0.4 0.03 250);
+	--color-power-700: oklch(0.32 0.03 250);
+	--color-power-800: oklch(0.25 0.02 250);
+	--color-power-900: oklch(0.18 0.02 250);
+
+	--color-primary: var(--color-cyprus-400);
+	--color-primary-muted: var(--color-cyprus-50);
+
+	--color-accent: var(--color-accent-400);
+
+	--color-foreground: var(--color-power-900);
+	--color-foreground-muted: var(--color-power-400);
+
+	--color-background: var(--color-cloud-50);
+	--color-background-muted: var(--color-cloud-200);
+
+	--color-border: var(--color-cyprus-50);
+
+	--color-card: var(--color-power-50);
 }
 
 :root {
@@ -67,20 +118,16 @@
 }
 
 @layer {
-	.pill {
-		@apply inline-block rounded-full bg-cyprus-400/10 px-4 py-1.5 text-sm font-bold tracking-wider uppercase;
-	}
-
 	.form-label {
 		@apply sr-only px-1 text-sm font-semibold text-power-400;
 	}
 
 	.input {
-		@apply w-full rounded-3xl border border-cyprus-400/10 bg-cyprus-400/5 transition-colors outline-none focus:border-cyprus-400 focus:bg-cloud-50;
+		@apply w-full rounded-3xl border border-border bg-background transition-colors outline-none focus:border-primary focus:bg-background;
 	}
 
 	.input-icon {
-		@apply absolute top-1/2 left-4 -translate-y-1/2 text-cyprus-400/40;
+		@apply absolute top-1/2 left-4 -translate-y-1/2 text-foreground-muted;
 	}
 
 	.btn {
@@ -100,10 +147,13 @@
 	}
 
 	.hero-gradient {
-		background: radial-gradient(
-			circle at 50% 50%,
-			rgba(0, 71, 68, 0.05) 0%,
-			rgba(245, 248, 248, 1) 100%
-		);
+		background:
+			radial-gradient(circle at 20% 30%, oklch(0.95 0.02 180 / 0.6) 0%, transparent 40%),
+			radial-gradient(circle at 80% 70%, oklch(0.85 0.05 180 / 0.4) 0%, transparent 50%),
+			linear-gradient(180deg, oklch(1 0 0) 0%, oklch(0.96 0.01 180) 100%);
+	}
+
+	.bookmark-card {
+		@apply rounded-xl border border-dashed border-cyprus-400/10 p-6 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:border-cyprus-400 hover:shadow-xl;
 	}
 }

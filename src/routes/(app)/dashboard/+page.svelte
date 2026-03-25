@@ -8,14 +8,12 @@
 </script>
 
 <!-- Main dashboard -->
-<div class="min-h-screen flex-1 px-6">
+<div class="flex min-h-screen flex-1 flex-col">
 	<DashboardHeader />
-	<div class="inline-block w-full py-6 md:hidden">
-		<BookmarkSearchForm />
-	</div>
 
-	<!-- Main View -->
-	<section>
+	<section class="px-6 md:ml-96">
+		<!-- <p class="text-foreground-muted">dummy text</p> -->
+
 		<DashboardPageTitle />
 
 		<!-- Filter  -->

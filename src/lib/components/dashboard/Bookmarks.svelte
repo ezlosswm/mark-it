@@ -1,7 +1,23 @@
 <script>
-	import { Bookmark, Link2 } from '@lucide/svelte';
+	import { Bookmark, Link2, Plus } from '@lucide/svelte';
 
 	const bookmarks = [
+		{
+			tag: 'Design',
+			title: 'The Minimalist Grid System',
+			description:
+				'Learn how to design beautiful user interfaces by yourself using specific tactics explained from a developer’s point-of-view.',
+			link: 'https://refactoringui.com/',
+			isFavorited: false
+		},
+		{
+			tag: 'Tech',
+			title: 'Future of Neural Interfaces',
+			description:
+				'How bio-digital integration is reshaping our interaction with silicon-based intelligence.',
+			link: 'https://medium.com/@riz.net19/the-future-of-neural-interfaces-transforming-gaming-healthcare-and-beyond-cc5130771a5b',
+			isFavorited: true
+		},
 		{
 			tag: 'Design',
 			title: 'The Minimalist Grid System',
@@ -21,7 +37,7 @@
 	];
 </script>
 
-<div class="grid grid-cols-1 gap-4">
+<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
 	{#each bookmarks as bookmark}
 		<article
 			class="group rounded-xl border border-cyprus-400/10 p-6 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
@@ -60,4 +76,12 @@
 			</div>
 		</article>
 	{/each}
+	<div class="bookmark-card hover:bg-cyprus-400/10">
+		<div class="flex size-full flex-col items-center justify-center gap-3">
+			<div class="rounded-full bg-cyprus-300/10 p-3 group-hover:p-4">
+				<Plus />
+			</div>
+			<span class="font-bold tracking-wider">New Bookmark</span>
+		</div>
+	</div>
 </div>

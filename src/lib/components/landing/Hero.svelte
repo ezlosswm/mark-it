@@ -1,21 +1,25 @@
+<script>
+	import Button from '../ui/button/Button.svelte';
+</script>
+
 <div class="hero-gradient flex flex-col items-center py-20 text-center">
 	<div class="mx-auto max-w-4xl space-y-8">
-		<span class="pill">Trusted by 20,000+ Power Users</span>
+		<span
+			class="inline-block rounded-full bg-primary-muted px-4 py-1.5 text-sm font-bold tracking-wider text-primary uppercase"
+			>Trusted by 20,000+ Power Users</span
+		>
 		<h1 class="text-5xl leading-[1.1] font-bold tracking-tight md:text-7xl">
 			Bookmark everything. <br />
-			<span class="text-cyprus-300"> Find it instantly. </span>
+			<span class="text-accent"> Find it instantly. </span>
 		</h1>
-		<p class="mx-auto max-w-2xl text-xl leading-relaxed text-power-300 md:text-2xl">
+		<p class="mx-auto max-w-2xl text-xl leading-relaxed text-foreground-muted md:text-2xl">
 			The playful bookmark manager for organized minds. Save links, images, and snippets in one
 			beautiful place.
 		</p>
 		<div class="flex flex-col items-center gap-4 pt-4 sm:flex-row">
-			<a
-				href="/register"
-				class="btn btn-primary text-lg shadow-lg shadow-cyprus-400/20 transition-transform hover:scale-105"
+			<Button size="lg" href="/register" class="w-full shadow-lg shadow-primary/40 hover:scale-105"
+				>Get Started - It's Free</Button
 			>
-				Get Started - It's Free
-			</a>
 
 			<!-- <button class="btn btn-secondary">Watch Demo</button> -->
 		</div>
@@ -23,10 +27,10 @@
 
 	<div class="group relative mx-auto mt-20 w-full max-w-5xl">
 		<div
-			class="absolute -inset-1 -z-10 rounded-2xl bg-linear-to-r from-cyprus-400 to-cyprus-300 opacity-20 blur transition duration-1000 group-hover:opacity-30"
+			class="absolute -inset-1 -z-10 rounded-2xl bg-linear-to-r from-primary to-accent opacity-20 blur transition duration-1000 group-hover:opacity-30"
 		></div>
 		<div
-			class="relative z-10 overflow-hidden rounded-2xl border border-cyprus-400/10 bg-cloud-50 shadow-2xl"
+			class="relative z-10 overflow-hidden rounded-2xl border border-border bg-background shadow-2xl"
 		>
 			<!-- Placeholder for screenshot of the bookmark manager interface. This will be replaced with an actual screenshot in the future. -->
 			<img

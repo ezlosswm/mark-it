@@ -1,5 +1,6 @@
 <script>
 	import { Lock, Mail } from '@lucide/svelte';
+	import Button from '../ui/button/Button.svelte';
 </script>
 
 <form action="">
@@ -17,7 +18,7 @@
 			<div class="flex w-full items-center justify-between">
 				<label for="" class="form-label"> Password </label>
 				<div class="flex flex-1 justify-end">
-					<a href="#" class="text-xs font-semibold hover:underline">Forgot password?</a>
+					<Button href="#" variant="link" size="sm">Forgot Password?</Button>
 				</div>
 			</div>
 
@@ -27,9 +28,9 @@
 			</div>
 		</div>
 
-		<button class="btn btn-primary group flex items-center justify-center gap-2">
-			<span> Log In </span>
-		</button>
+		<!-- <Button size="lg">Log In</Button> -->
+
+		<Button>Log In</Button>
 	</div>
 </form>
 
@@ -41,7 +42,7 @@
 	<div class="h-px flex-1 bg-power-200/25"></div>
 </div>
 
-<button class="btn btn-secondary group flex items-center justify-center gap-2">
+<Button variant="secondary">
 	<img src="./assets/google-color.svg" alt="Google color icon" />
-	<span> Log in with Google </span>
-</button>
+	Log In With Google
+</Button>

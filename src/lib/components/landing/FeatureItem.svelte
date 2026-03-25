@@ -22,14 +22,14 @@
 >
 	<div class="flex-1 space-y-6">
 		<div
-			class="flex size-16 items-center justify-center rounded-2xl bg-cyprus-400/10 text-cyprus-400"
+			class="flex size-16 items-center justify-center rounded-2xl bg-primary-muted text-foreground"
 		>
 			<feature.icon class="size-8" />
 		</div>
 
 		<h2 class="text-4xl leading-tight font-bold">{feature.title}</h2>
 
-		<p class="text-lg leading-relaxed text-power-300">
+		<p class="text-lg leading-relaxed text-foreground-muted">
 			{feature.description}
 		</p>
 
@@ -39,7 +39,7 @@
 	<!-- Image -->
 	<div class="flex-1">
 		<div
-			class="flex aspect-square items-center justify-center rounded-3xl border border-cyprus-400/5 bg-cyprus-400/5 p-8"
+			class="flex aspect-square items-center justify-center rounded-3xl border border-border bg-primary-muted/50 p-8"
 		>
 			<img
 				src={feature.img.src}

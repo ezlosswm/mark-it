@@ -1,29 +1,30 @@
 <script lang="ts">
 	import { BookMarked } from '@lucide/svelte';
 	import { page } from '$app/state';
+	import Button from './ui/button/Button.svelte';
 </script>
 
-<header class="sticky top-0 z-40 border-b border-cyprus-400/10 bg-cloud-100 p-6">
+<header class="sticky top-0 z-40 border-b border-border bg-background px-6 py-3">
 	<nav class="mx-auto flex max-w-360 items-center justify-between">
-		<a href="/" class="flex items-center gap-3">
-			<div class="flex size-10 items-center justify-center rounded-full bg-cyprus-400">
-				<BookMarked class="text-cloud-100" />
+		<Button href="/" variant="ghost">
+			<div class="flex size-10 items-center justify-center rounded-full bg-primary">
+				<BookMarked class="text-background" />
 			</div>
 			<h2 class="tracking-light text-2xl font-bold">MarkIt</h2>
-		</a>
+		</Button>
 
 		{#if page.url.pathname === '/register'}
-			<div class="space-x-3">
-				<span class="hidden md:inline-block">Already have an account? </span>
-				<a href="/login" class="btn-accent rounded-3xl px-6 py-2 font-bold"> Log In </a>
+			<div>
+				<span class="hidden text-foreground-muted md:inline-block">Already have an account? </span>
+				<Button href="/login" variant="link">Log In</Button>
 			</div>
 		{:else if page.url.pathname === '/login'}
-			<div class="space-x-1">
-				<span class="hidden md:inline-block">New to MarkIt? </span>
-				<a href="/register" class="font-semibold hover:underline"> Create an account </a>
+			<div>
+				<span class="hidden text-foreground-muted md:inline-block">New to MarkIt? </span>
+				<Button href="/register" variant="link">Create An Account</Button>
 			</div>
 		{:else}
-			<a href="/register" class="btn-primary rounded-3xl px-6 py-2"> Sign Up </a>
+			<Button href="/register">Sign Up</Button>
 		{/if}
 	</nav>
 </header>

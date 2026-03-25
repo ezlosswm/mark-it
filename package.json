@@ -40,6 +40,8 @@
 		"@lucide/svelte": "^0.577.0",
 		"convex": "^1.33.1",
 		"convex-svelte": "^0.0.12",
-		"lucide-svelte": "^0.577.0"
+		"lucide-svelte": "^0.577.0",
+		"tailwind-merge": "^3.5.0",
+		"tailwind-variants": "^3.2.2"
 	}
 }
