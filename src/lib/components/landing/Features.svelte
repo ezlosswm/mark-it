@@ -69,7 +69,7 @@
 <FeatureItem feature={features[2]}>
 	<Button
 		href="/"
-		class="justify-start p-0 duration-400 hover:translate-x-2"
+		class="flex items-center justify-start p-0 duration-400 hover:translate-x-2"
 		size="lg"
 		variant="link"
 	>

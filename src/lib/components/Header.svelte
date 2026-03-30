@@ -2,16 +2,12 @@
 	import { BookMarked } from '@lucide/svelte';
 	import { page } from '$app/state';
 	import Button from './ui/button/Button.svelte';
+	import Logo from './ui/logo/Logo.svelte';
 </script>
 
-<header class="sticky top-0 z-40 border-b border-border bg-background px-6 py-3">
+<header class="sticky top-0 z-40 border-b border-border bg-background px-6 py-3 lg:py-4">
 	<nav class="mx-auto flex max-w-360 items-center justify-between">
-		<Button href="/" variant="ghost">
-			<div class="flex size-10 items-center justify-center rounded-full bg-primary">
-				<BookMarked class="text-background" />
-			</div>
-			<h2 class="tracking-light text-2xl font-bold">MarkIt</h2>
-		</Button>
+		<Logo />
 
 		{#if page.url.pathname === '/register'}
 			<div>

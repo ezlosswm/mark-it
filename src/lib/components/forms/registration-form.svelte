@@ -49,5 +49,5 @@
 
 <Button variant="secondary">
 	<img src="./assets/google-color.svg" alt="Google color icon" />
-	Sign up with Google
+	Sign Up With Google
 </Button>
