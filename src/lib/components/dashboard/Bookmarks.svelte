@@ -1,6 +1,7 @@
 <script>
 	import { Bookmark, Link2, Plus } from '@lucide/svelte';
 	import Button from '../ui/button/Button.svelte';
+	import { popover } from '../popover/Popover.svelte';
 
 	const bookmarks = [
 		{
@@ -83,7 +84,7 @@
 		</article>
 	{/each}
 
-	<Button variant="ghost" class="bookmark-card min-h-56">
+	<Button onclick={() => popover.toggleOpenState()} variant="ghost" class="bookmark-card min-h-56">
 		<div class="rounded-full bg-accent/20 p-3">
 			<Plus />
 		</div>

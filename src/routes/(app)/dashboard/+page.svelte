@@ -2,6 +2,7 @@
 	import Bookmarks from '$lib/components/dashboard/Bookmarks.svelte';
 	import DashboardHeader from '$lib/components/dashboard/DashboardHeader.svelte';
 	import DashboardPageTitle from '$lib/components/dashboard/DashboardPageTitle.svelte';
+	import Popover, { popover } from '$lib/components/popover/Popover.svelte';
 	import Button from '$lib/components/ui/button/Button.svelte';
 	import { Plus } from '@lucide/svelte';
 
@@ -31,12 +32,18 @@
 
 		<!-- ! Hovering button -->
 		<div class="fixed right-8 bottom-8 z-40 -translate-8">
-			<Button class="rounded-full p-4 drop-shadow-lg drop-shadow-accent/30">
+			<Button
+				onclick={() => popover.toggleOpenState()}
+				class="rounded-full p-4 drop-shadow-lg drop-shadow-accent/30"
+			>
 				<Plus />
 			</Button>
 		</div>
 	</section>
 </div>
+
+<!-- Popover -->
+<Popover />
 
 <style>
 	.hide-scrollbar {

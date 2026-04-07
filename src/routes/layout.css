@@ -127,7 +127,8 @@
 	--color-danger: var(--color-danger-500);
 
 	--color-border: var(--color-cyprus-50);
-	--color-border-dark: var(--color-cyprus-700) --color-card: var(--color-power-50);
+	--color-border-dark: var(--color-cyprus-700);
+	--color-card: var(--color-power-50);
 }
 
 :root {
