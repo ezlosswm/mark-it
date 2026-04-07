@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { BookMarked } from '@lucide/svelte';
 	import Logo from './ui/logo/Logo.svelte';
 	import Button from './ui/button/Button.svelte';
 </script>
@@ -25,7 +24,6 @@
 						variant="link"
 						class="p-0 font-normal text-foreground-muted">Carlos Gomez</Button
 					>
-					<!-- <a href="https://github.com/ezlosswm" target="_blank">Carlos Gomez</a> -->
 				</span>
 			</p>
 			<p>MarkIt. Built for the curious minds.</p>

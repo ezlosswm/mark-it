@@ -20,8 +20,6 @@
 			<Button size="lg" href="/register" class="w-full shadow-lg shadow-primary/40 hover:scale-105"
 				>Get Started - It's Free</Button
 			>
-
-			<!-- <button class="btn btn-secondary">Watch Demo</button> -->
 		</div>
 	</div>
 

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { BookMarked } from '@lucide/svelte';
 	import { page } from '$app/state';
 	import Button from './ui/button/Button.svelte';
 	import Logo from './ui/logo/Logo.svelte';

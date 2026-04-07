@@ -6,7 +6,7 @@
 		lg: 'size-8'
 	};
 
-	export const btnVariants = tv({
+	export const logoVariants = tv({
 		base: 'inline-flex items-center text-primary font-bold tracking-wider',
 		variants: {
 			alignment: {
@@ -30,33 +30,36 @@
 		}
 	});
 
-	export type ButtonVariant = VariantProps<typeof btnVariants>['alignment'];
-	export type ButtonSize = VariantProps<typeof btnVariants>['size'];
+	export type LogoVariant = VariantProps<typeof logoVariants>['alignment'];
+	export type LogoSize = VariantProps<typeof logoVariants>['size'];
 </script>
 
 <script lang="ts">
 	import type { HTMLAnchorAttributes, HTMLButtonAttributes } from 'svelte/elements';
 	import { BookMarked } from '@lucide/svelte';
-	type ButtonProps = {
-		alignment?: ButtonVariant;
+	type LogoProps = {
+		alignment?: LogoVariant;
 		href?: string | undefined;
 		disabled?: boolean;
-		size?: ButtonSize;
+		size?: LogoSize;
 		class?: string;
 	} & HTMLAnchorAttributes &
 		HTMLButtonAttributes;
 
 	let {
-		href = undefined,
 		alignment = 'default',
 		size = 'default',
 		class: className,
-		disabled,
 		...restProps
-	}: ButtonProps = $props();
+	}: LogoProps = $props();
 </script>
 
-<a href="/" class={btnVariants({ alignment, size, class: className })} tabindex="-1" {...restProps}>
+<a
+	href="/"
+	class={logoVariants({ alignment, size, class: className })}
+	tabindex="-1"
+	{...restProps}
+>
 	<div class="flex items-center rounded-full bg-primary p-3 text-background">
 		<BookMarked class={iconSizeMap[size]} />
 	</div>

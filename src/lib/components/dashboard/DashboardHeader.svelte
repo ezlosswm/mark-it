@@ -15,7 +15,6 @@
 		window.addEventListener('resize', check);
 		return () => window.removeEventListener('resize', check);
 	});
-	let isMenuOpen = $derived(isDesktop || dashboard.isOpen);
 </script>
 
 <div
