@@ -1,10 +1,13 @@
-<script>
+<script lang="ts">
 	import RegistrationForm from '$lib/components/forms/registration-form.svelte';
+	import type { PageData } from './$types';
+
+	const { data }: { data: PageData } = $props();
 </script>
 
 <main class="mx-auto max-w-360 p-6">
 	<div
-		class="mx-auto grid w-full max-w-5xl grid-cols-1 items-center gap-12 rounded-3xl border border-border bg-card p-8 shadow-sm md:p-12 lg:grid-cols-2"
+		class="mx-auto grid w-full max-w-5xl grid-cols-1 items-center gap-12 rounded-3xl border border-border bg-card p-6 shadow-sm md:p-12 lg:grid-cols-2"
 	>
 		<div class="flex flex-col gap-8">
 			<div class="space-y-3">
@@ -15,8 +18,7 @@
 				</p>
 			</div>
 
-			<!-- Form -->
-			<RegistrationForm />
+			<RegistrationForm {data} />
 		</div>
 
 		<div class="relative hidden w-full flex-col items-center justify-center lg:flex">

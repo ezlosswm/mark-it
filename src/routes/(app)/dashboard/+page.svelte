@@ -1,12 +1,15 @@
-<script>
-	import Bookmarks from '$lib/components/dashboard/Bookmarks.svelte';
+<script lang="ts">
+	import Bookmarks from '$lib/components/Bookmarks.svelte';
 	import DashboardHeader from '$lib/components/dashboard/DashboardHeader.svelte';
 	import DashboardPageTitle from '$lib/components/dashboard/DashboardPageTitle.svelte';
-	import Popover, { popover } from '$lib/components/popover/Popover.svelte';
+	import Popover, { popover } from '$lib/components/ui/popover/Popover.svelte';
 	import Button from '$lib/components/ui/button/Button.svelte';
 	import { Plus } from '@lucide/svelte';
+	import type { PageData } from './$types';
 
 	const filterButton = ['All', 'Design', 'Tech', 'Finance', 'Architecture', 'Anime'];
+
+	const { data }: { data: PageData } = $props();
 </script>
 
 <!-- Main dashboard -->
@@ -43,7 +46,7 @@
 </div>
 
 <!-- Popover -->
-<Popover />
+<Popover {data} />
 
 <style>
 	.hide-scrollbar {

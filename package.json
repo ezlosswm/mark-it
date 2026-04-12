@@ -30,6 +30,7 @@
 		"prettier-plugin-tailwindcss": "^0.7.2",
 		"svelte": "^5.51.0",
 		"svelte-check": "^4.4.2",
+		"sveltekit-superforms": "^2.30.1",
 		"tailwindcss": "^4.1.18",
 		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.54.0",
@@ -37,11 +38,16 @@
 		"vite-plugin-devtools-json": "^1.0.0"
 	},
 	"dependencies": {
+		"@convex-dev/better-auth": "^0.11.4",
 		"@lucide/svelte": "^0.577.0",
-		"convex": "^1.33.1",
+		"@mmailaender/convex-better-auth-svelte": "^0.7.3",
+		"@mmailaender/convex-svelte": "^0.18.0",
+		"better-auth": "1.5.3",
+		"convex": "^1.35.1",
 		"convex-svelte": "^0.0.12",
 		"lucide-svelte": "^0.577.0",
 		"tailwind-merge": "^3.5.0",
-		"tailwind-variants": "^3.2.2"
+		"tailwind-variants": "^3.2.2",
+		"zod": "^4.3.6"
 	}
 }

@@ -1,7 +1,7 @@
 <script>
 	import { Bookmark, Link2, Plus } from '@lucide/svelte';
-	import Button from '../ui/button/Button.svelte';
-	import { popover } from '../popover/Popover.svelte';
+	import Button from '$lib/components/ui/button/Button.svelte';
+	import { popover } from '$lib/components/ui/popover/Popover.svelte';
 
 	const bookmarks = [
 		{

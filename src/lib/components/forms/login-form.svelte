@@ -1,6 +1,8 @@
-<script>
+<script lang="ts">
 	import { Lock, Mail } from '@lucide/svelte';
 	import Button from '../ui/button/Button.svelte';
+
+	const { data } = $props();
 </script>
 
 <form action="">
@@ -10,7 +12,7 @@
 
 			<div class="relative">
 				<Mail class="input-icon" />
-				<input type="email" class="input py-4 pr-4 pl-12" placeholder="carlos@example.com" />
+				<input type="email" class="input pr-4 pl-12" placeholder="carlos@example.com" />
 			</div>
 		</div>
 
@@ -24,7 +26,7 @@
 
 			<div class="relative">
 				<Lock class="input-icon" />
-				<input type="text" class="input py-4 pr-4 pl-12" placeholder="••••••••" />
+				<input type="text" class="input pr-4 pl-12" placeholder="••••••••" />
 			</div>
 		</div>
 

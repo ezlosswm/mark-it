@@ -145,31 +145,15 @@
 
 @layer {
 	.form-label {
-		@apply sr-only px-1 text-sm font-semibold text-power-400;
+		@apply sr-only px-1 text-sm font-semibold text-foreground-muted;
 	}
 
 	.input {
-		@apply w-full rounded-3xl border border-border bg-background transition-colors outline-none focus:border-primary focus:bg-background;
+		@apply w-full rounded-lg border border-border bg-background py-3 transition-colors outline-none focus:border-primary focus:bg-background;
 	}
 
 	.input-icon {
 		@apply absolute top-1/2 left-4 -translate-y-1/2 text-foreground-muted;
-	}
-
-	.btn {
-		@apply w-full rounded-3xl px-8 py-4 font-bold;
-	}
-
-	.btn-accent {
-		@apply bg-cyprus-400/10 transition-colors hover:bg-cyprus-400/20;
-	}
-
-	.btn-primary {
-		@apply bg-cyprus-400 text-cloud-100 transition-colors hover:opacity-90;
-	}
-
-	.btn-secondary {
-		@apply border-2 border-cyprus-400/10 bg-cloud-50 text-cyprus-400 transition-colors hover:bg-cloud-200;
 	}
 
 	.hero-gradient {
