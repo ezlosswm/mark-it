@@ -6,5 +6,5 @@ export default defineSchema({
 		url: v.string(),
 		title: v.string(),
 		description: v.optional(v.string())
-	})
+	}).index('by_url', ['url'])
 });

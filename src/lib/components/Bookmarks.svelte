@@ -2,8 +2,10 @@
 	import { Bookmark, Link2, Plus } from '@lucide/svelte';
 	import Button from '$lib/components/ui/button/Button.svelte';
 	import { popover } from '$lib/components/ui/popover/Popover.svelte';
+	import { useQuery } from 'convex-svelte';
+	import { api } from '../../convex/_generated/api';
 
-	const bookmarks = [
+	const testBookmarks = [
 		{
 			tag: 'Design',
 			title: 'The Minimalist Grid System',
@@ -37,6 +39,15 @@
 			isFavorited: true
 		}
 	];
+
+	// Temp placeholder
+	const tag = 'URL';
+	const isFavorited = true;
+
+	const bookmarksResponse = useQuery(api.bookmarks.getBookmarks, {});
+	let bookmarks = $derived(bookmarksResponse.data);
+
+	$inspect(bookmarks);
 </script>
 
 <div class="grid grid-cols-1 gap-4 py-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -48,12 +59,12 @@
 				<div
 					class="rounded bg-accent/30 px-2 py-0.5 text-xs font-bold tracking-wide text-foreground-muted"
 				>
-					{bookmark.tag}
+					{tag}
 				</div>
 
 				<button>
 					<Bookmark
-						class="stroke-accent {bookmark.isFavorited
+						class="stroke-accent {isFavorited
 							? 'fill-accent grayscale-60 transition-colors group-hover:grayscale-0'
 							: ''}"
 					/>
@@ -74,11 +85,11 @@
 				<Link2 class="size-5 shrink-0" />
 				<Button
 					variant="link"
-					href={bookmark.link}
+					href={bookmark.url}
 					class="min-w-0 truncate p-0 text-xs font-normal text-primary"
 					target="_blank"
 				>
-					{bookmark.link}
+					{bookmark.url}
 				</Button>
 			</div>
 		</article>
