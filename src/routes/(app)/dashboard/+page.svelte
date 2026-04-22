@@ -10,6 +10,7 @@
 	const filterButton = ['All', 'Design', 'Tech', 'Finance', 'Architecture', 'Anime'];
 
 	const { data }: { data: PageData } = $props();
+	// console.log('User data: \n', data.user);
 </script>
 
 <!-- Main dashboard -->

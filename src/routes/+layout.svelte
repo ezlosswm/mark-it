@@ -5,6 +5,8 @@
 	import { setupConvex } from 'convex-svelte';
 	import { onMount } from 'svelte';
 	import { popover } from '$lib/components/ui/popover/Popover.svelte';
+	import { createSvelteAuthClient } from '@mmailaender/convex-better-auth-svelte/svelte';
+	import { authClient } from '$lib/auth-client';
 
 	// Closes the popover component
 	function handleKeydown(e: KeyboardEvent) {
@@ -22,7 +24,9 @@
 	});
 
 	let { children } = $props();
+
 	setupConvex(PUBLIC_CONVEX_URL);
+	createSvelteAuthClient({ authClient });
 </script>
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>

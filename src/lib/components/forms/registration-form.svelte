@@ -1,13 +1,55 @@
 <script lang="ts">
-	import { ArrowRight, Lock, Mail, User } from '@lucide/svelte';
+	import { ArrowRight, LoaderCircle, Lock, Mail, User } from '@lucide/svelte';
 	import Button from '../ui/button/Button.svelte';
 	import { superForm } from 'sveltekit-superforms';
+	import { zod4 } from 'sveltekit-superforms/adapters';
+	import { registerUserSchema } from './schema';
+	import { authClient } from '$lib/auth-client';
+	import { goto } from '$app/navigation';
+	import { resolve } from '$app/paths';
 
-	const { data } = $props();
-	const { form, errors, enhance: formEnhance } = superForm(data.form);
+	let { data } = $props();
+	const { form, errors, validateForm } = superForm(data.form, {
+		validators: zod4(registerUserSchema)
+	});
+
+	let error = $state();
+	let isLoading = $state(false);
+	async function handleRegister(e: Event) {
+		e.preventDefault();
+		isLoading = true;
+
+		const result = await validateForm({ update: true });
+		if (!result.valid) {
+			isLoading = false;
+			return;
+		}
+
+		try {
+			await authClient.signUp.email(
+				{
+					name: $form.name,
+					email: $form.email,
+					password: $form.password
+				},
+				{
+					onSuccess: () => {
+						goto(resolve('/dashboard'));
+					},
+					onError: (ctx) => {
+						error = ctx.error.message;
+					}
+				}
+			);
+		} catch (err) {
+			console.error('Registration failed: ', err);
+			isLoading = false;
+			error = 'Unable to register user';
+		}
+	}
 </script>
 
-<form action="?/login" method="POST" use:formEnhance>
+<form onsubmit={handleRegister} novalidate>
 	<div class="flex w-full flex-col gap-5">
 		<div class="flex flex-col gap-2">
 			<label for="name" class="form-label"> Full Name </label>
@@ -53,7 +95,7 @@
 			<div class="relative">
 				<Lock class="input-icon size-5" />
 				<input
-					type="text"
+					type="password"
 					name="password"
 					placeholder="••••••••"
 					class="input pr-4 pl-12"
@@ -66,9 +108,15 @@
 			{/if}
 		</div>
 
-		<Button>
-			Create Account
-			<ArrowRight class="size-5 transition-transform group-hover:translate-x-1" />
+		<Button disabled={isLoading}>
+			{#if isLoading}
+				<span>
+					<LoaderCircle class="animate-spin" />
+				</span>
+			{:else}
+				Create Account
+				<ArrowRight class="size-5 transition-transform group-hover:translate-x-1" />
+			{/if}
 		</Button>
 	</div>
 </form>

@@ -4,9 +4,9 @@ import { bookmarkSchema } from '$lib/components/forms/schema';
 import { superValidate } from 'sveltekit-superforms';
 import { fail } from '@sveltejs/kit';
 import { convex } from '$lib';
-import { api } from '../../../convex/_generated/api.js';
+import { api } from '$convex/_generated/api.js';
 
-export const load: PageServerLoad = async () => {
+export const load: PageServerLoad = async (event) => {
 	return {
 		form: await superValidate(zod4(bookmarkSchema))
 	};
@@ -21,11 +21,9 @@ export const actions = {
 			});
 		}
 
-		await convex.mutation(api.bookmarks.createBookmark, {
-			url: form.data.url,
-			title: form.data.title,
-			description: form.data.description || ''
-		});
+		const { url, title, description } = form.data;
+
+		await convex.mutation(api.bookmarks.createBookmark, { url, title, description });
 
 		return {
 			form

@@ -14,6 +14,15 @@
 	import { dashboard } from '$lib/components/dashboard/dashboard.svelte';
 	import Button from '../ui/button/Button.svelte';
 	import Logo from '../ui/logo/Logo.svelte';
+	import { authClient } from '$lib/auth-client';
+	import { resolve } from '$app/paths';
+	import { goto } from '$app/navigation';
+
+	// This doesn't work
+	async function handleSignOut() {
+		await authClient.signOut();
+		goto(resolve('/login'));
+	}
 
 	// Placeholder nav
 	const categories = [
@@ -78,7 +87,7 @@
 				Settings
 			</Button>
 
-			<Button class="w-full" variant="destructive">
+			<Button onclick={handleSignOut} class="w-full" variant="destructive">
 				<LogOut />
 				Log out
 			</Button>

@@ -32,8 +32,11 @@ export type RegisterUserSchema = typeof registerUserSchema;
 
 // Login User Schema
 export const loginUserSchema = z.object({
-	email: z.email(`Enter a valid email`),
-	password: z.string().min(PASSWORD_MIN, 'No account found').max(PASSWORD_MAX, 'Incorrect password')
+	email: z.email(`Account not found`),
+	password: z
+		.string()
+		.min(PASSWORD_MIN, 'Incorrect password')
+		.max(PASSWORD_MAX, 'Incorrect password')
 });
 
 export type LoginUserSchema = typeof loginUserSchema;

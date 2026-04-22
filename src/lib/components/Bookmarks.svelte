@@ -2,7 +2,7 @@
 	import { Bookmark, Link2, Plus } from '@lucide/svelte';
 	import Button from '$lib/components/ui/button/Button.svelte';
 	import { popover } from '$lib/components/ui/popover/Popover.svelte';
-	import { useQuery } from 'convex-svelte';
+	import { useQuery } from '@mmailaender/convex-svelte';
 	import { api } from '../../convex/_generated/api';
 
 	const testBookmarks = [
@@ -46,8 +46,6 @@
 
 	const bookmarksResponse = useQuery(api.bookmarks.getBookmarks, {});
 	let bookmarks = $derived(bookmarksResponse.data);
-
-	$inspect(bookmarks);
 </script>
 
 <div class="grid grid-cols-1 gap-4 py-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
