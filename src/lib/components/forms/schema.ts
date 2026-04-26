@@ -33,10 +33,7 @@ export type RegisterUserSchema = typeof registerUserSchema;
 // Login User Schema
 export const loginUserSchema = z.object({
 	email: z.email(`Account not found`),
-	password: z
-		.string()
-		.min(PASSWORD_MIN, 'Incorrect password')
-		.max(PASSWORD_MAX, 'Incorrect password')
+	password: z.string()
 });
 
 export type LoginUserSchema = typeof loginUserSchema;

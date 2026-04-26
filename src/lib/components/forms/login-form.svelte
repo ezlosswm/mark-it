@@ -17,7 +17,6 @@
 	let isLoading = $state(false);
 	async function handleLogin(e: Event) {
 		e.preventDefault();
-		error = null;
 		isLoading = true;
 
 		const result = await validateForm({ update: true });
@@ -37,7 +36,9 @@
 						goto(resolve('/dashboard'));
 					},
 					onError: (ctx) => {
-						error = ctx.error.message;
+						error = ctx.error.message || 'Invalid email or password';
+						console.log(ctx.error.message);
+						isLoading = false;
 					}
 				}
 			);
@@ -49,6 +50,11 @@
 	}
 </script>
 
+{#if error}
+	<span class="text-xs text-danger">
+		{error}
+	</span>
+{/if}
 <form onsubmit={handleLogin} novalidate>
 	<div class="flex w-full flex-col gap-5">
 		<div class="flex flex-col gap-2">

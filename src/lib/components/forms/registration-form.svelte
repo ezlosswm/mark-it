@@ -38,6 +38,7 @@
 					},
 					onError: (ctx) => {
 						error = ctx.error.message;
+						isLoading = false;
 					}
 				}
 			);

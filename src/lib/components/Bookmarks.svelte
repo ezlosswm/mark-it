@@ -2,7 +2,7 @@
 	import { Bookmark, Link2, Plus } from '@lucide/svelte';
 	import Button from '$lib/components/ui/button/Button.svelte';
 	import { popover } from '$lib/components/ui/popover/Popover.svelte';
-	import { useQuery } from '@mmailaender/convex-svelte';
+	import { useAuth, useQuery } from '@mmailaender/convex-svelte';
 	import { api } from '../../convex/_generated/api';
 
 	const testBookmarks = [
@@ -44,7 +44,10 @@
 	const tag = 'URL';
 	const isFavorited = true;
 
-	const bookmarksResponse = useQuery(api.bookmarks.getBookmarks, {});
+	const auth = useAuth();
+	const bookmarksResponse = useQuery(api.bookmarks.getBookmarks, () =>
+		auth.isAuthenticated ? {} : 'skip'
+	);
 	let bookmarks = $derived(bookmarksResponse.data);
 </script>
 
