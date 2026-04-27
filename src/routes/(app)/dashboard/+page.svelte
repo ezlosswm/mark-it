@@ -2,7 +2,7 @@
 	import Bookmarks from '$lib/components/Bookmarks.svelte';
 	import DashboardHeader from '$lib/components/dashboard/DashboardHeader.svelte';
 	import DashboardPageTitle from '$lib/components/dashboard/DashboardPageTitle.svelte';
-	import Popover, { popover } from '$lib/components/ui/popover/Popover.svelte';
+	import { popover } from '$lib/components/ui/popover/Popover.svelte';
 	import Button from '$lib/components/ui/button/Button.svelte';
 	import { Plus } from '@lucide/svelte';
 	import type { PageData } from './$types';
@@ -44,9 +44,6 @@
 		</div>
 	</section>
 </div>
-
-<!-- Popover -->
-<Popover {data} />
 
 <style>
 	.hide-scrollbar {

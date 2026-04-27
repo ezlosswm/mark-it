@@ -65,20 +65,8 @@
 	--color-accent-800: oklch(0.3 0.07 185);
 	--color-accent-900: oklch(0.22 0.06 185);
 
-	/* Cloud */
-	--color-cloud-50: oklch(1 0 0); /* white */
-	--color-cloud-100: oklch(0.97 0.01 200);
-	--color-cloud-200: oklch(0.94 0.01 200);
-	--color-cloud-300: oklch(0.9 0.01 200);
-	--color-cloud-400: oklch(0.85 0.01 200);
-	--color-cloud-500: oklch(0.75 0.01 200);
-	--color-cloud-600: oklch(0.65 0.01 200);
-	--color-cloud-700: oklch(0.55 0.01 200);
-	--color-cloud-800: oklch(0.45 0.01 200);
-	--color-cloud-900: oklch(0.35 0.01 200);
-
 	/* Slate / UI Text Colors */
-	--color-power-50: oklch(95.006% 0.0098 253.018 / 0.25); /* card only */
+	--color-power-50: oklch(95.006% 0.0098 253.018); /* card only */
 	--color-power-100: oklch(0.88 0.02 250);
 	--color-power-200: oklch(0.78 0.03 250); /* ~#94a3b8 */
 	--color-power-300: oklch(0.68 0.04 250); /* ~#64748b */
@@ -113,22 +101,23 @@
 	--color-danger-800: oklch(0.34 0.11 25);
 	--color-danger-900: oklch(0.28 0.1 25);
 
-	--color-primary: var(--color-cyprus-400);
-	--color-primary-muted: var(--color-cyprus-50);
+	--color-primary: var(--color-cyprus-600);
+	--color-primary-muted: var(--color-cyprus-500);
 
 	--color-accent: var(--color-accent-400);
+	--color-accent-muted: var(--color-accent-50);
 
 	--color-foreground: var(--color-power-900);
 	--color-foreground-muted: var(--color-power-400);
 
-	--color-background: var(--color-cloud-50);
-	--color-background-muted: var(--color-cloud-200);
+	--color-background: var(--color-power-50);
+	--color-background-muted: var(--color-power-200);
 
 	--color-danger: var(--color-danger-500);
 
 	--color-border: var(--color-cyprus-50);
 	--color-border-dark: var(--color-cyprus-700);
-	--color-card: var(--color-power-50);
+	--color-card: color-mix(in oklch, var(--color-power-200 / 0.6) 10%, transparent);
 }
 
 :root {
@@ -164,6 +153,6 @@
 	}
 
 	.bookmark-card {
-		@apply rounded-xl border border-dashed border-cyprus-400/10 p-6 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:border-cyprus-400 hover:shadow-xl;
+		@apply rounded-xl border border-dashed border-primary/10 p-6 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:border-primary hover:bg-primary/10 hover:shadow-xl;
 	}
 }

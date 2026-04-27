@@ -5,7 +5,7 @@
 <div class="hero-gradient flex flex-col items-center py-20 text-center">
 	<div class="mx-auto max-w-4xl space-y-8">
 		<span
-			class="inline-block rounded-full bg-primary-muted px-4 py-1.5 text-sm font-bold tracking-wider text-primary uppercase"
+			class="inline-block rounded-full bg-accent-muted px-4 py-1.5 text-sm font-bold tracking-wider text-primary uppercase"
 			>Trusted by 20,000+ Power Users</span
 		>
 		<h1 class="text-5xl leading-[1.1] font-bold tracking-tight md:text-7xl">

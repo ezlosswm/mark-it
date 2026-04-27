@@ -22,7 +22,7 @@
 >
 	<div class="flex-1 space-y-6">
 		<div
-			class="flex size-16 items-center justify-center rounded-2xl bg-primary-muted text-foreground"
+			class="flex size-16 items-center justify-center rounded-2xl bg-accent-muted text-foreground"
 		>
 			<feature.icon class="size-8" />
 		</div>
@@ -39,7 +39,7 @@
 	<!-- Image -->
 	<div class="flex-1">
 		<div
-			class="flex aspect-square items-center justify-center rounded-3xl border border-border bg-primary-muted/50 p-8"
+			class="flex aspect-square items-center justify-center rounded-3xl border border-border bg-accent-muted/50 p-8"
 		>
 			<img
 				src={feature.img.src}

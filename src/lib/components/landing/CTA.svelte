@@ -4,7 +4,7 @@
 
 <div class="space-y-10">
 	<h2 class="text-4xl leading-tight font-bold md:text-5xl">Ready to clear the digital clutter?</h2>
-	<p class="mb-15 text-xl text-primary-muted">
+	<p class="mb-15 text-xl text-accent-muted">
 		Join a group of designers, developers and researchers who have found a better way to mark the
 		web.
 	</p>

@@ -20,7 +20,7 @@
 </script>
 
 <div
-	class="sticky inset-x-0 top-0 z-10 mb-8 w-full border-b border-border bg-background px-6 py-3 md:flex-col md:py-0"
+	class="sticky inset-x-0 top-0 z-10 mb-8 w-full border-b border-border bg-background px-6 py-3 shadow-sm md:flex-col md:py-0 md:shadow-none"
 >
 	<div class="flex items-center justify-between md:hidden">
 		<Button variant="ghost" class="p-2" onclick={() => dashboard.toggle()}>
@@ -38,7 +38,6 @@
 </div>
 
 {#if !isDesktop && dashboard.isOpen}
-	<!-- Mobile menu -->
 	<div
 		in:fly={{ x: -300, duration: 250 }}
 		out:fly={{ x: -300, duration: 200 }}

@@ -11,7 +11,7 @@
 				ghost: 'active:bg-background-muted/50 hover:bg-background-muted text-foreground',
 				outline:
 					'shadow-xs border border-foreground-muted text-foreground hover:bg-background-muted/90 bg-background',
-				link: 'truncate inline hover:underline underline-offset-4 text-foreground',
+				link: 'truncate inline-flex hover:underline underline-offset-4 text-foreground',
 				destructive: 'bg-danger hover:bg-danger-400 text-background active:bg-danger'
 			},
 			size: {
