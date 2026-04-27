@@ -4,7 +4,7 @@
 	import { superForm } from 'sveltekit-superforms';
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import { registerUserSchema } from './schema';
-	import { authClient } from '$lib/auth-client';
+	import { authClient, signInWithGoogle } from '$lib/auth-client';
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
 
@@ -130,7 +130,7 @@
 	<div class="h-px flex-1 bg-power-200/25"></div>
 </div>
 
-<Button variant="secondary">
+<Button onclick={signInWithGoogle} variant="secondary">
 	<img src="./assets/google-color.svg" alt="Google color icon" />
 	Sign Up With Google
 </Button>

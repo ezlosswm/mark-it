@@ -14,7 +14,7 @@
 
 <!-- Main dashboard -->
 <div class="relative flex h-screen flex-col">
-	<DashboardHeader />
+	<DashboardHeader name={data.user.name} />
 
 	<section class="px-6 md:ml-96">
 		<DashboardPageTitle />

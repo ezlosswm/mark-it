@@ -51,7 +51,7 @@
 	let bookmarks = $derived(bookmarksResponse.data);
 </script>
 
-<div class="grid grid-cols-1 gap-4 py-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+<div class="grid grid-cols-1 gap-4 py-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 	{#each bookmarks as bookmark}
 		<article
 			class="group min-h-56 rounded-xl border border-border p-6 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"

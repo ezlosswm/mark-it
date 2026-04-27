@@ -15,10 +15,12 @@
 		window.addEventListener('resize', check);
 		return () => window.removeEventListener('resize', check);
 	});
+
+	const { name } = $props();
 </script>
 
 <div
-	class="sticky inset-x-0 top-0 z-10 mb-8 w-full border-b border-border bg-background px-6 py-3 md:py-0"
+	class="sticky inset-x-0 top-0 z-10 mb-8 w-full border-b border-border bg-background px-6 py-3 md:flex-col md:py-0"
 >
 	<div class="flex items-center justify-between md:hidden">
 		<Button variant="ghost" class="p-2" onclick={() => dashboard.toggle()}>
@@ -28,6 +30,10 @@
 		<div class="mx-auto">
 			<Logo />
 		</div>
+	</div>
+
+	<div class="my-4 justify-end text-right">
+		<p>Hey, {name}</p>
 	</div>
 </div>
 
@@ -41,7 +47,9 @@
 		<SidebarContent />
 	</div>
 {:else if isDesktop}
-	<aside class="fixed inset-y-0 left-0 z-20 w-96 border-r border-border bg-background shadow-sm">
+	<aside
+		class="fixed inset-y-0 left-0 z-20 border-r border-border bg-background shadow-sm md:w-2/5 lg:w-1/5"
+	>
 		<SidebarContent />
 	</aside>
 {/if}

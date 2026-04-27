@@ -8,6 +8,8 @@ import { v } from 'convex/values';
 import authConfig from './auth.config';
 
 const siteUrl = process.env.SITE_URL!;
+const clientId = process.env.GOOGLE_CLIENT_ID;
+const clientSecret = process.env.GOOGLE_SECRET;
 
 // The component client has methods needed for integrating Convex with Better Auth,
 // as well as helper methods for general use.
@@ -17,6 +19,13 @@ export const createAuth = (ctx: GenericCtx<DataModel>) => {
 	return betterAuth({
 		baseURL: siteUrl,
 		database: authComponent.adapter(ctx),
+		socialProviders: {
+			google: {
+				prompt: 'select_account',
+				clientId: clientId as string,
+				clientSecret: clientSecret as string
+			}
+		},
 		// Configure simple, non-verified email/password to get started
 		emailAndPassword: {
 			enabled: true,
