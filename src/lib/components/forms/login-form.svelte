@@ -80,7 +80,7 @@
 			<div class="flex w-full items-center justify-between">
 				<label for="password" class="form-label"> Password </label>
 				<div class="flex flex-1 justify-end">
-					<Button href="#" variant="link" size="sm">Forgot Password?</Button>
+					<Button href="/forgot-password" variant="link" size="sm">Forgot Password?</Button>
 				</div>
 			</div>
 

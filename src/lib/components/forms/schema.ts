@@ -37,3 +37,22 @@ export const loginUserSchema = z.object({
 });
 
 export type LoginUserSchema = typeof loginUserSchema;
+
+export const forgotPasswordSchema = z.object({
+	email: z.email(`Account not found`)
+});
+
+export type ForgotPasswordSchema = typeof forgotPasswordSchema;
+
+export const resetPasswordSchema = z.object({
+	password: z
+		.string()
+		.min(PASSWORD_MIN, `Password must be at least ${PASSWORD_MIN} characters long`)
+		.max(PASSWORD_MAX, `Password must be shorter than ${PASSWORD_MAX} characters`),
+	confirmPassword: z
+		.string()
+		.min(PASSWORD_MIN, `Password must be at least ${PASSWORD_MIN} characters long`)
+		.max(PASSWORD_MAX, `Password must be shorter than ${PASSWORD_MAX} characters`)
+});
+
+export type ResetPasswordSchema = typeof resetPasswordSchema;

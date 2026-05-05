@@ -66,7 +66,7 @@
 	--color-accent-900: oklch(0.22 0.06 185);
 
 	/* Slate / UI Text Colors */
-	--color-power-50: oklch(95.006% 0.0098 253.018); /* card only */
+	--color-power-50: oklch(97.828% 0.0075 260.892); /* card only */
 	--color-power-100: oklch(0.88 0.02 250);
 	--color-power-200: oklch(0.78 0.03 250); /* ~#94a3b8 */
 	--color-power-300: oklch(0.68 0.04 250); /* ~#64748b */
