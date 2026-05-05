@@ -59,7 +59,7 @@
 				</div>
 
 				{#if $errors.confirmPassword}
-					<p class="text-xs text-danger">{$errors.confirmPassword}
+					<p class="text-xs text-danger">{$errors.confirmPassword}</p>
 				{/if}
 			</div>
 			<Button class="w-full" type="submit">Reset Password</Button>
