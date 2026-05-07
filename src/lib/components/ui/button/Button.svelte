@@ -10,12 +10,12 @@
 					'shadow-sm active:shadow-none border border-border bg-background active:bg-background text-foreground hover:bg-background-muted',
 				ghost: 'active:bg-background-muted/50 hover:bg-background-muted text-foreground',
 				outline:
-					'shadow-xs border border-foreground-muted text-foreground hover:bg-background-muted/90 bg-background',
+					'shadow-xs border border-foreground-muted text-foreground/75 hover:bg-background-muted/10 bg-background',
 				link: 'truncate inline-flex hover:underline underline-offset-4 text-foreground',
 				destructive: 'bg-danger hover:bg-danger-400 text-background active:bg-danger'
 			},
 			size: {
-				sm: 'py-1 px-3 text-xs gap-1 [&_svg]:size-3',
+				sm: 'py-0.5 px-3 text-xs gap-1 [&_svg]:size-3',
 				default: 'py-3 px-8 text-sm gap-2 [&_svg]:size-5',
 				lg: 'py-4 px-10 text-lg gap-4 [&_svg]:size-8'
 			},

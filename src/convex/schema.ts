@@ -9,5 +9,22 @@ export default defineSchema({
 		description: v.optional(v.string())
 	})
 		.index('by_user', ['userId'])
-		.index('by_url', ['userId', 'url'])
+		.index('by_url', ['userId', 'url']),
+
+	tags: defineTable({
+		userId: v.string(),
+		name: v.string(),
+		slug: v.string(),
+		usageCount: v.number()
+	})
+		.index('by_user', ['userId'])
+		.index('by_slug', ['userId', 'slug']),
+
+	bookmarkTags: defineTable({
+		bookmarkId: v.id('bookmarks'),
+		tagId: v.id('tags')
+	})
+		.index('by_bookmark', ['bookmarkId'])
+		.index('by_tag', ['tagId'])
+		.index('by_bookmark_tag', ['bookmarkId', 'tagId'])
 });

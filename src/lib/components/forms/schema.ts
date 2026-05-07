@@ -13,7 +13,8 @@ export const bookmarkSchema = z.object({
 	description: z
 		.string()
 		.min(DESCRIPTION_MIN, `Description must be at least ${DESCRIPTION_MIN} characters`)
-		.optional()
+		.optional(),
+	tags: z.array(z.string()).optional()
 });
 
 export type BookmarkSchema = typeof bookmarkSchema;

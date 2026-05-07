@@ -1,47 +1,11 @@
-<script>
+<script lang="ts">
 	import { Bookmark, Link2, Plus } from '@lucide/svelte';
 	import Button from '$lib/components/ui/button/Button.svelte';
 	import { popover } from '$lib/components/ui/popover/Popover.svelte';
 	import { useAuth, useQuery } from '@mmailaender/convex-svelte';
 	import { api } from '../../convex/_generated/api';
+	import { normalizeTag } from '$lib/tags';
 
-	const testBookmarks = [
-		{
-			tag: 'Design',
-			title: 'The Minimalist Grid System',
-			description:
-				'Learn how to design beautiful user interfaces by yourself using specific tactics explained from a developer’s point-of-view.',
-			link: 'https://refactoringui.com/',
-			isFavorited: false
-		},
-		{
-			tag: 'Tech',
-			title: 'Future of Neural Interfaces',
-			description:
-				'How bio-digital integration is reshaping our interaction with silicon-based intelligence.',
-			link: 'https://medium.com/@riz.net19/the-future-of-neural-interfaces-transforming-gaming-healthcare-and-beyond-cc5130771a5b',
-			isFavorited: true
-		},
-		{
-			tag: 'Design',
-			title: 'The Minimalist Grid System',
-			description:
-				'Learn how to design beautiful user interfaces by yourself using specific tactics explained from a developer’s point-of-view.',
-			link: 'https://refactoringui.com/',
-			isFavorited: false
-		},
-		{
-			tag: 'Tech',
-			title: 'Future of Neural Interfaces',
-			description:
-				'How bio-digital integration is reshaping our interaction with silicon-based intelligence.',
-			link: 'https://medium.com/@riz.net19/the-future-of-neural-interfaces-transforming-gaming-healthcare-and-beyond-cc5130771a5b',
-			isFavorited: true
-		}
-	];
-
-	// Temp placeholder
-	const tag = 'URL';
 	const isFavorited = true;
 
 	const auth = useAuth();
@@ -54,13 +18,25 @@
 <div class="grid grid-cols-1 gap-4 py-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 	{#each bookmarks as bookmark}
 		<article
-			class="group min-h-56 rounded-xl border border-border p-6 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
+			class="group min-h-48 rounded-xl border border-border p-6 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
 		>
 			<div class="mb-3 flex items-center justify-between">
-				<div
-					class="rounded bg-accent/30 px-2 py-0.5 text-xs font-bold tracking-wide text-foreground-muted"
-				>
-					{tag}
+				<div class="flex w-full gap-2 truncate">
+					{#if bookmark.tags?.length}
+						{#each bookmark.tags.slice(0, 5) as tag}
+							<div
+								class="rounded bg-accent/30 px-2 py-0.5 text-xs font-bold tracking-wide text-foreground-muted"
+							>
+								{normalizeTag(tag!.slug)}
+							</div>
+						{/each}
+					{:else}
+						<div
+							class="rounded bg-accent/30 px-2 py-0.5 text-xs font-bold tracking-wide text-foreground-muted"
+						>
+							URL
+						</div>
+					{/if}
 				</div>
 
 				<button>

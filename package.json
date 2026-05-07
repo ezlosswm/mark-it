@@ -44,6 +44,7 @@
 		"@mmailaender/convex-svelte": "^0.18.0",
 		"better-auth": "1.5.3",
 		"convex": "^1.35.1",
+		"convex-smart-tags": "^0.1.1",
 		"convex-svelte": "^0.0.12",
 		"lucide-svelte": "^0.577.0",
 		"tailwind-merge": "^3.5.0",

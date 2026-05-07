@@ -6,8 +6,12 @@
 	import Button from '$lib/components/ui/button/Button.svelte';
 	import { Plus } from '@lucide/svelte';
 	import type { PageData } from './$types';
+	import { useQuery } from '@mmailaender/convex-svelte';
+	import { api } from '$convex/_generated/api';
+	import { normalizeTag } from '$lib/tags';
 
-	const filterButton = ['All', 'Design', 'Tech', 'Finance', 'Architecture', 'Anime'];
+	const tagsResponse = useQuery(api.bookmarks.getTags);
+	let tags = $derived(tagsResponse.data);
 
 	const { data }: { data: PageData } = $props();
 </script>
@@ -20,13 +24,13 @@
 		<DashboardPageTitle />
 
 		<div class="hide-scrollbar mb-4 flex gap-3 overflow-x-auto pb-2 md:hidden">
-			{#each filterButton as filter}
+			{#each tags as filter}
 				<Button
 					size="sm"
 					variant="outline"
-					class="rounded-full first:bg-primary first:text-background first:hover:opacity-80"
+					class="rounded-full first:bg-primary first:text-background first:hover:bg-primary/80 first:hover:opacity-80"
 				>
-					{filter}
+					{normalizeTag(filter.slug)}
 				</Button>
 			{/each}
 		</div>

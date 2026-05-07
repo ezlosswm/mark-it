@@ -3,7 +3,6 @@
 	import Button from '../ui/button/Button.svelte';
 	import { popover } from '$lib/components/ui/popover/Popover.svelte';
 	import { superForm } from 'sveltekit-superforms/client';
-	import { useAuth } from '@mmailaender/convex-better-auth-svelte/svelte';
 	import { useMutation } from '@mmailaender/convex-svelte';
 	import { api } from '$convex/_generated/api';
 	import { zod4 } from 'sveltekit-superforms/adapters';
@@ -28,6 +27,8 @@
 		}
 	});
 
+	let tagInput = $state('');
+
 	let isLoading = $state(false);
 	async function handleSaveBookmark(e: Event) {
 		e.preventDefault();
@@ -44,9 +45,12 @@
 			await saveBookmark({
 				url: $form.url,
 				title: $form.title,
-				description: $form.description
+				description: $form.description,
+				tags: $form.tags
 			});
 
+			reset();
+			popover.toggleOpenState();
 			isLoading = false;
 		} catch (error) {
 			if (error instanceof Error && error.message === 'UNAUTHORIZED') {
@@ -108,6 +112,24 @@
 		{#if $errors.description}
 			<p class="text-xs text-danger">{$errors.description}</p>
 		{/if}
+	</div>
+
+	<div class="flex flex-col gap-2">
+		<label for="tags" class="form-label">Tags</label>
+
+		<input
+			type="text"
+			name="tags"
+			class="input px-4"
+			placeholder="read later, docs, sveltekit"
+			bind:value={tagInput}
+			onchange={() => {
+				$form.tags = tagInput
+					.split(',')
+					.map((tag) => tag.trim())
+					.filter(Boolean);
+			}}
+		/>
 	</div>
 
 	<div class="mt-5 flex items-center justify-end gap-2">
