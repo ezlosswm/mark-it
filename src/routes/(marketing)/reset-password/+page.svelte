@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Lock } from '@lucide/svelte';
-	import Button from '$lib/components/ui/button/Button.svelte';
+	import { Button } from '$lib/components/ui/button';
 	import { superForm } from 'sveltekit-superforms';
 	import type { PageData } from './$types';
 	import { zod4 } from 'sveltekit-superforms/adapters';
@@ -27,7 +27,7 @@
 	>
 		<div class="space-y-1">
 			<h2 class="text-2xl font-bold">Reset Password</h2>
-			<p class="text-sm text-foreground-muted">Enter your new password</p>
+			<p class="text-foreground-muted text-sm">Enter your new password</p>
 		</div>
 
 		<form action="POST" onsubmit={handleResetPassword} class="space-y-5" novalidate>
@@ -40,7 +40,7 @@
 				</div>
 
 				{#if $errors.password}
-					<p class="text-xs text-danger">{$errors.password}</p>
+					<p class="text-danger text-xs">{$errors.password}</p>
 				{/if}
 			</div>
 			<div class="mt-5 flex flex-col gap-2">
@@ -59,7 +59,7 @@
 				</div>
 
 				{#if $errors.confirmPassword}
-					<p class="text-xs text-danger">{$errors.confirmPassword}</p>
+					<p class="text-danger text-xs">{$errors.confirmPassword}</p>
 				{/if}
 			</div>
 			<Button class="w-full" type="submit">Reset Password</Button>

@@ -1,8 +1,25 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import Popover from '$lib/components/ui/popover/poooop.svelte';
-	let { children } = $props();
+	import * as Sidebar from '$lib/components/ui/sidebar';
+	import AppSidebar from '$lib/components/app-sidebar.svelte';
+	import SiteHeader from '$lib/components/site-header.svelte';
+
+	let { data, children } = $props();
 </script>
 
-{@render children()}
-<Popover data={page.data} />
+<div class="[--header-height:calc(--spacing(14))]">
+	<Sidebar.Provider>
+		<AppSidebar user={data.user} />
+
+		<Sidebar.Inset>
+			<SiteHeader />
+
+			<div class="flex flex-1 flex-col">
+				{@render children()}
+			</div>
+		</Sidebar.Inset>
+
+		<Popover data={page.data} />
+	</Sidebar.Provider>
+</div>

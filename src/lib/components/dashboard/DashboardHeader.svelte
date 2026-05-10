@@ -23,7 +23,7 @@
 	class="sticky inset-x-0 top-0 z-10 mb-8 w-full border-b border-border bg-background px-6 py-3 shadow-sm md:flex-col md:py-0 md:shadow-none"
 >
 	<div class="flex items-center justify-between md:hidden">
-		<Button variant="ghost" class="p-2" onclick={() => dashboard.toggle()}>
+		<Button variant="ghost" size="icon-lg" onclick={() => dashboard.toggle()}>
 			<Menu />
 		</Button>
 
@@ -33,7 +33,7 @@
 	</div>
 
 	<div class="my-4 justify-end text-right">
-		<p>Hey, {name}</p>
+		<p class="text-muted-foreground">Hey, {name}</p>
 	</div>
 </div>
 

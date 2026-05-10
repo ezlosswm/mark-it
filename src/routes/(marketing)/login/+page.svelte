@@ -13,10 +13,10 @@
 				<BookMarked class="size-8 md:size-12" />
 			</div>
 
-			<h1 class="text-3xl font-bold tracking-tight">MarkIt</h1>
+			<h1 class="">MarkIt</h1>
 		</div>
 
-		<div class="relative flex h-48 w-full items-center justify-center overflow-hidden rounded-lg">
+		<div class="relative flex h-48 w-full items-center justify-center overflow-hidden rounded-3xl">
 			<img
 				src="./assets/login-illustration.webp"
 				alt="Login illustration"
@@ -26,9 +26,9 @@
 			<!-- Overlay -->
 			<div class="absolute inset-0 bg-background/60 backdrop-blur-[2px]"></div>
 			<div class="relative z-10 px-6 text-center">
-				<p class="text-xl font-bold">Welcome back</p>
+				<h4>Welcome back</h4>
 
-				<p class="text-sm font-medium">Ready to organize your world?</p>
+				<p class="text-sm text-muted-foreground">Ready to organize your world?</p>
 			</div>
 		</div>
 

@@ -1,7 +1,5 @@
 <script lang="ts">
 	import Bookmarks from '$lib/components/Bookmarks.svelte';
-	import DashboardHeader from '$lib/components/dashboard/DashboardHeader.svelte';
-	import DashboardPageTitle from '$lib/components/dashboard/DashboardPageTitle.svelte';
 	import { popover } from '$lib/components/ui/popover/poooop.svelte';
 	import { Plus } from '@lucide/svelte';
 	import { Button } from '$lib/components/ui/button';
@@ -18,11 +16,7 @@
 
 <!-- Main dashboard -->
 <div class="relative flex h-screen flex-col">
-	<DashboardHeader name={data.user.name} />
-
-	<section class="px-6 md:ml-96">
-		<DashboardPageTitle />
-
+	<section class="px-6">
 		<div class="hide-scrollbar mb-4 flex gap-3 overflow-x-auto pb-2 md:hidden">
 			{#each tags as filter}
 				<Button
@@ -41,7 +35,8 @@
 		<div class="fixed right-8 bottom-8 z-40 -translate-8">
 			<Button
 				onclick={() => popover.toggleOpenState()}
-				class="rounded-full p-4 drop-shadow-lg drop-shadow-accent/30"
+				size="icon-lg"
+				class="rounded-full drop-shadow-lg drop-shadow-accent/30"
 			>
 				<Plus />
 			</Button>
