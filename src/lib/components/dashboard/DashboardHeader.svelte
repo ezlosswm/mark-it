@@ -5,7 +5,7 @@
 	import { dashboard } from '$lib/components/dashboard/dashboard.svelte';
 	import SidebarContent from './SidebarContent.svelte';
 	import { onMount } from 'svelte';
-	import Button from '../ui/button/Button.svelte';
+	import { Button } from '$lib/components/ui/button';
 	import Logo from '../ui/logo/Logo.svelte';
 
 	let isDesktop = $state(false);

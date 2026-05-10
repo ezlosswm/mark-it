@@ -2,9 +2,9 @@
 	import Bookmarks from '$lib/components/Bookmarks.svelte';
 	import DashboardHeader from '$lib/components/dashboard/DashboardHeader.svelte';
 	import DashboardPageTitle from '$lib/components/dashboard/DashboardPageTitle.svelte';
-	import { popover } from '$lib/components/ui/popover/Popover.svelte';
-	import Button from '$lib/components/ui/button/Button.svelte';
+	import { popover } from '$lib/components/ui/popover/poooop.svelte';
 	import { Plus } from '@lucide/svelte';
+	import { Button } from '$lib/components/ui/button';
 	import type { PageData } from './$types';
 	import { useQuery } from '@mmailaender/convex-svelte';
 	import { api } from '$convex/_generated/api';

@@ -14,8 +14,8 @@
 
 <script lang="ts">
 	import { X } from '@lucide/svelte';
-	import Button from '$lib/components/ui/button/Button.svelte';
 	import BookmarkForm from '$lib/components/forms/bookmark-form.svelte';
+	import { Button } from '$lib/components/ui/button';
 
 	const { data } = $props();
 </script>
@@ -23,12 +23,12 @@
 <section
 	class="{popover.isOpen
 		? 'fixed'
-		: 'hidden'} inset-0 z-60 flex h-screen items-center justify-center bg-border-dark/50 p-4 backdrop-blur-xs"
+		: 'hidden'} inset-0 z-60 flex h-screen items-center justify-center bg-foreground/50 p-4 backdrop-blur-xs"
 >
-	<div class="mx-auto w-full max-w-xl rounded-xl bg-background">
-		<div class="flex items-center justify-between p-4">
-			<h2 class="text-lg font-bold tracking-wide">Add New Bookmark</h2>
-			<Button onclick={() => popover.toggleOpenState()} variant="ghost" class="p-2">
+	<div class="mx-auto w-full max-w-2xl rounded-3xl bg-background p-4">
+		<div class="flex items-center justify-between p-8">
+			<h2 class="w-full">Add New Bookmark</h2>
+			<Button onclick={() => popover.toggleOpenState()} variant="ghost">
 				<X />
 			</Button>
 		</div>

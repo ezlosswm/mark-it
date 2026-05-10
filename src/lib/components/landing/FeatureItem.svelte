@@ -21,15 +21,13 @@
 		: ''} lg:gap-24"
 >
 	<div class="flex-1 space-y-6">
-		<div
-			class="flex size-16 items-center justify-center rounded-2xl bg-accent-muted text-foreground"
-		>
+		<div class="flex size-16 items-center justify-center rounded-3xl bg-accent/10 text-accent">
 			<feature.icon class="size-8" />
 		</div>
 
-		<h2 class="text-4xl leading-tight font-bold">{feature.title}</h2>
+		<h2>{feature.title}</h2>
 
-		<p class="text-lg leading-relaxed text-foreground-muted">
+		<p class="text-lg text-muted-foreground">
 			{feature.description}
 		</p>
 
@@ -39,7 +37,7 @@
 	<!-- Image -->
 	<div class="flex-1">
 		<div
-			class="flex aspect-square items-center justify-center rounded-3xl border border-border bg-accent-muted/50 p-8"
+			class="flex aspect-square items-center justify-center rounded-3xl border border-border bg-accent/10 p-8"
 		>
 			<img
 				src={feature.img.src}

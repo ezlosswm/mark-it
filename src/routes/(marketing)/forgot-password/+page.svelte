@@ -12,10 +12,12 @@
 
 	async function handleForgotPassword(e: Event) {
 		e.preventDefault();
+
 		const result = await validateForm({ update: true });
 		if (!result.valid) {
 			return;
 		}
+
 		console.log('Forgot password form submitted');
 	}
 </script>
@@ -48,7 +50,9 @@
 					<p class="text-xs text-danger">{$errors.email}</p>
 				{/if}
 			</div>
-			<Button class="w-full" type="submit">Reset Password</Button>
+			<Button  class="w-full" type="submit">
+				Reset Password	
+			</Button>
 		</form>
 	</div>
 </main>

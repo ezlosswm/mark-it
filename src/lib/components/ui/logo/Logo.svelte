@@ -63,5 +63,5 @@
 	<div class="flex items-center rounded-full bg-primary p-3 text-background">
 		<BookMarked class={iconSizeMap[size]} />
 	</div>
-	<h2>MarkIt</h2>
+	<h2 class="border-none p-0">MarkIt</h2>
 </a>

@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { Link2, LoaderCircle, Plus } from '@lucide/svelte';
-	import Button from '../ui/button/Button.svelte';
-	import { popover } from '$lib/components/ui/popover/Popover.svelte';
+	import * as Form from '$lib/components/ui/form';
+	import { Input } from '$lib/components/ui/input';
+	import { Textarea } from '$lib/components/ui/textarea';
+	import { popover } from '$lib/components/ui/popover/poooop.svelte';
 	import { superForm } from 'sveltekit-superforms/client';
 	import { useMutation } from '@mmailaender/convex-svelte';
 	import { api } from '$convex/_generated/api';
@@ -11,9 +13,11 @@
 	import { resolve } from '$app/paths';
 
 	const { data } = $props();
-	const { form, errors, reset, validateForm } = superForm(data.form, {
+	const form = superForm(data.form, {
 		validators: zod4(bookmarkSchema)
 	});
+
+	const { form: formData, reset, validateForm } = form;
 
 	function handleCancel(e: Event) {
 		e.preventDefault();
@@ -43,10 +47,10 @@
 		try {
 			const saveBookmark = useMutation(api.bookmarks.saveBookmark);
 			await saveBookmark({
-				url: $form.url,
-				title: $form.title,
-				description: $form.description,
-				tags: $form.tags
+				url: $formData.url,
+				title: $formData.title,
+				description: $formData.description,
+				tags: $formData.tags
 			});
 
 			reset();
@@ -59,82 +63,96 @@
 			}
 
 			console.error('Unable to save bookmark: ', error);
+		} finally {
 			isLoading = false;
 		}
 	}
 </script>
 
 <form onsubmit={handleSaveBookmark} class="space-y-5 p-4" novalidate>
-	<div class="flex flex-col gap-2">
-		<label for="url" class="form-label">URL</label>
-		<div class="relative">
-			<Link2 class="input-icon" />
-			<input
-				type="text"
-				name="url"
-				class="input pr-4 pl-12"
-				placeholder="https://..."
-				bind:value={$form.url}
-			/>
-		</div>
-		{#if $errors.url}
-			<p class="text-xs text-danger">{$errors.url}</p>
-		{/if}
-	</div>
+	<Form.Field {form} name="url" class="flex flex-col gap-2">
+		<Form.Control>
+			{#snippet children({ props })}
+				<Form.Label>URL</Form.Label>
+				<div class="relative">
+					<Link2 class="absolute top-1/2 left-4 size-5 -translate-y-1/2 text-muted-foreground" />
+					<Input
+						{...props}
+						type="text"
+						name="url"
+						class="pl-12"
+						placeholder="https://..."
+						bind:value={$formData.url}
+					/>
+				</div>
+			{/snippet}
+		</Form.Control>
+		<Form.FieldErrors />
+	</Form.Field>
 
-	<div class="flex flex-col gap-2">
-		<label for="title" class="form-label">Title</label>
-		<div class="relative">
-			<input
-				type="text"
-				name="title"
-				class="input px-4"
-				placeholder="Enter bookmark title"
-				bind:value={$form.title}
-			/>
-		</div>
-		{#if $errors.title}
-			<p class="text-xs text-danger">{$errors.title}</p>
-		{/if}
-	</div>
+	<Form.Field {form} name="title" class="flex flex-col gap-2">
+		<Form.Control>
+			{#snippet children({ props })}
+				<Form.Label>Title</Form.Label>
+				<div class="relative">
+					<Input
+						{...props}
+						type="text"
+						name="title"
+						class="pl-4"
+						placeholder="Enter bookmark title"
+						bind:value={$formData.title}
+					/>
+				</div>
+			{/snippet}
+		</Form.Control>
+		<Form.FieldErrors />
+	</Form.Field>
 
-	<div class="flex flex-col gap-2">
-		<label for="description" class="form-label">Description</label>
-		<div class="relative">
-			<textarea
-				name="description"
-				class="input p-3"
-				placeholder="Add a short description"
-				rows="4"
-				bind:value={$form.description}
-			></textarea>
-		</div>
-		{#if $errors.description}
-			<p class="text-xs text-danger">{$errors.description}</p>
-		{/if}
-	</div>
+	<Form.Field {form} name="description" class="flex flex-col gap-2">
+		<Form.Control>
+			{#snippet children({ props })}
+				<Form.Label>Description</Form.Label>
+				<div class="relative">
+					<Textarea
+						{...props}
+						name="description"
+						class="input p-3"
+						placeholder="Add a short description"
+						bind:value={$formData.description}
+					></Textarea>
+				</div>
+			{/snippet}
+		</Form.Control>
+		<Form.FieldErrors />
+	</Form.Field>
 
-	<div class="flex flex-col gap-2">
-		<label for="tags" class="form-label">Tags</label>
+	<Form.Field {form} name="tags" class="flex flex-col gap-2">
+		<Form.Control>
+			{#snippet children({ props })}
+				<Form.Label>Tags</Form.Label>
 
-		<input
-			type="text"
-			name="tags"
-			class="input px-4"
-			placeholder="read later, docs, sveltekit"
-			bind:value={tagInput}
-			onchange={() => {
-				$form.tags = tagInput
-					.split(',')
-					.map((tag) => tag.trim())
-					.filter(Boolean);
-			}}
-		/>
-	</div>
+				<Input
+					{...props}
+					type="text"
+					name="tags"
+					class="input px-4"
+					placeholder="read later, docs, sveltekit"
+					bind:value={tagInput}
+					onchange={() => {
+						$formData.tags = tagInput
+							.split(',')
+							.map((tag) => tag.trim())
+							.filter(Boolean);
+					}}
+				/>
+			{/snippet}
+		</Form.Control>
+	</Form.Field>
 
 	<div class="mt-5 flex items-center justify-end gap-2">
-		<Button variant="ghost" onclick={handleCancel}>Cancel</Button>
-		<Button disabled={isLoading} type="submit">
+		<Form.Button variant="ghost" onclick={handleCancel}>Cancel</Form.Button>
+		<Form.Button disabled={isLoading} type="submit">
 			{#if isLoading}
 				<span>
 					<LoaderCircle class="animate-spin" />
@@ -143,6 +161,6 @@
 				<Plus />
 				Add Bookmark
 			{/if}
-		</Button>
+		</Form.Button>
 	</div>
 </form>

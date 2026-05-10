@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import Button from './ui/button/Button.svelte';
+	import { Button } from '$lib/components/ui/button';
 	import Logo from './ui/logo/Logo.svelte';
 </script>
 
@@ -10,12 +10,12 @@
 
 		{#if page.url.pathname === '/register'}
 			<div>
-				<span class="hidden text-foreground-muted md:inline-block">Already have an account? </span>
+				<span class="hidden text-muted-foreground md:inline-block">Already have an account? </span>
 				<Button href="/login" variant="link">Log In</Button>
 			</div>
 		{:else if page.url.pathname === '/login'}
 			<div>
-				<span class="hidden text-foreground-muted md:inline-block">New to MarkIt? </span>
+				<span class="hidden text-muted-foreground md:inline-block">New to MarkIt? </span>
 				<Button href="/register" variant="link">Create An Account</Button>
 			</div>
 		{:else}

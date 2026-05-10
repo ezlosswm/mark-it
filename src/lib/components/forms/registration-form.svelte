@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { ArrowRight, LoaderCircle, Lock, Mail, User } from '@lucide/svelte';
-	import Button from '../ui/button/Button.svelte';
 	import { superForm } from 'sveltekit-superforms';
+	import { Button } from '$lib/components/ui/button';
+	import * as Form from '$lib/components/ui/form';
+	import { Input } from '$lib/components/ui/input';
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import { registerUserSchema } from './schema';
 	import { authClient, signInWithGoogle } from '$lib/auth-client';
@@ -9,11 +11,13 @@
 	import { resolve } from '$app/paths';
 
 	let { data } = $props();
-	const { form, errors, validateForm } = superForm(data.form, {
+	const form = superForm(data.form, {
 		validators: zod4(registerUserSchema)
 	});
 
-	let error = $state();
+	const { form: formData, validateForm } = form;
+
+	let error = $state<string | null>(null);
 	let isLoading = $state(false);
 	async function handleRegister(e: Event) {
 		e.preventDefault();
@@ -28,88 +32,93 @@
 		try {
 			await authClient.signUp.email(
 				{
-					name: $form.name,
-					email: $form.email,
-					password: $form.password
+					name: $formData.name,
+					email: $formData.email,
+					password: $formData.password
 				},
 				{
 					onSuccess: () => {
 						goto(resolve('/dashboard'));
 					},
 					onError: (ctx) => {
-						error = ctx.error.message;
+						error = ctx.error.message || 'Unable to register user';
 						isLoading = false;
 					}
 				}
 			);
 		} catch (err) {
 			console.error('Registration failed: ', err);
-			isLoading = false;
 			error = 'Unable to register user';
+		} finally {
+			isLoading = false;
 		}
 	}
 </script>
 
 <form onsubmit={handleRegister} novalidate>
 	<div class="flex w-full flex-col gap-5">
-		<div class="flex flex-col gap-2">
-			<label for="name" class="form-label"> Full Name </label>
+		{#if error}
+			<p class="text-sm text-destructive">{error}</p>
+		{/if}
+		<Form.Field {form} name="name" class="flex flex-col gap-2">
+			<Form.Control>
+				{#snippet children({ props })}
+					<Form.Label>Full Name</Form.Label>
+					<div class="relative">
+						<User class="absolute top-1/2 left-4 size-5 -translate-y-1/2 text-muted-foreground" />
+						<Input
+							{...props}
+							bind:value={$formData.name}
+							name="name"
+							class="pl-12"
+							placeholder="John Doe"
+						/>
+					</div>
+				{/snippet}
+			</Form.Control>
+			<Form.FieldErrors />
+		</Form.Field>
 
-			<div class="relative">
-				<User class="input-icon size-5" />
-				<input
-					type="text"
-					class="input pr-4 pl-12"
-					placeholder="John Doe"
-					name="name"
-					bind:value={$form.name}
-				/>
-			</div>
+		<Form.Field {form} name="email" class="flex flex-col gap-2">
+			<Form.Control>
+				{#snippet children({ props })}
+					<Form.Label>Email</Form.Label>
+					<div class="relative">
+						<Mail class="absolute top-1/2 left-4 size-5 -translate-y-1/2 text-muted-foreground" />
+						<Input
+							{...props}
+							bind:value={$formData.email}
+							name="email"
+							class="pl-12"
+							placeholder="youremail@example.com"
+						/>
+					</div>
+				{/snippet}
+			</Form.Control>
+			<Form.FieldErrors />
+		</Form.Field>
 
-			{#if $errors.name}
-				<p class="text-xs text-danger">{$errors.name}</p>
-			{/if}
-		</div>
+		<Form.Field {form} name="password" class="flex flex-col gap-2">
+			<Form.Control>
+				{#snippet children({ props })}
+					<Form.Label>Password</Form.Label>
+					<div class="relative">
+						<Lock class="absolute top-1/2 left-4 size-5 -translate-y-1/2 text-muted-foreground" />
+						<Input
+							{...props}
+							type="password"
+							name="password"
+							bind:value={$formData.password}
+							class="pl-12"
+							placeholder="••••••••"
+						/>
+					</div>
+				{/snippet}
+			</Form.Control>
+			<Form.FieldErrors />
+		</Form.Field>
 
-		<div class="flex flex-col gap-2">
-			<label for="email" class="form-label"> Email </label>
-
-			<div class="relative">
-				<Mail class="input-icon size-5" />
-				<input
-					type="email"
-					class="input pr-4 pl-12"
-					placeholder="carlos@example.com"
-					name="email"
-					bind:value={$form.email}
-				/>
-			</div>
-
-			{#if $errors.email}
-				<p class="text-xs text-danger">{$errors.email}</p>
-			{/if}
-		</div>
-
-		<div class="flex flex-col gap-2">
-			<label for="password" class="form-label"> Password </label>
-
-			<div class="relative">
-				<Lock class="input-icon size-5" />
-				<input
-					type="password"
-					name="password"
-					placeholder="••••••••"
-					class="input pr-4 pl-12"
-					bind:value={$form.password}
-				/>
-			</div>
-
-			{#if $errors.password}
-				<p class="text-xs text-danger">{$errors.password}</p>
-			{/if}
-		</div>
-
-		<Button disabled={isLoading}>
+		<Form.Button disabled={isLoading}>
 			{#if isLoading}
 				<span>
 					<LoaderCircle class="animate-spin" />
@@ -118,16 +127,16 @@
 				Create Account
 				<ArrowRight class="size-5 transition-transform group-hover:translate-x-1" />
 			{/if}
-		</Button>
+		</Form.Button>
 	</div>
 </form>
 
 <div
-	class="flex w-full items-center gap-4 text-xs font-medium tracking-widest text-power-200 uppercase"
+	class="flex w-full items-center gap-4 text-xs font-medium tracking-widest text-muted-foreground uppercase"
 >
-	<div class="h-px flex-1 bg-power-200/25"></div>
+	<div class="h-px flex-1 bg-muted-foreground/25"></div>
 	<span>Or sign in with</span>
-	<div class="h-px flex-1 bg-power-200/25"></div>
+	<div class="h-px flex-1 bg-muted-foreground/25"></div>
 </div>
 
 <Button onclick={signInWithGoogle} variant="secondary">

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Bookmark, Link2, Plus } from '@lucide/svelte';
-	import Button from '$lib/components/ui/button/Button.svelte';
-	import { popover } from '$lib/components/ui/popover/Popover.svelte';
+	import { Button } from '$lib/components/ui/button';
+	import { popover } from '$lib/components/ui/popover/poooop.svelte';
 	import { useAuth, useQuery } from '@mmailaender/convex-svelte';
 	import { api } from '../../convex/_generated/api';
 	import { normalizeTag } from '$lib/tags';
@@ -25,14 +25,14 @@
 					{#if bookmark.tags?.length}
 						{#each bookmark.tags.slice(0, 5) as tag}
 							<div
-								class="rounded bg-accent/30 px-2 py-0.5 text-xs font-bold tracking-wide text-foreground-muted"
+								class="text-foreground-muted rounded bg-accent/30 px-2 py-0.5 text-xs font-bold tracking-wide"
 							>
 								{normalizeTag(tag!.slug)}
 							</div>
 						{/each}
 					{:else}
 						<div
-							class="rounded bg-accent/30 px-2 py-0.5 text-xs font-bold tracking-wide text-foreground-muted"
+							class="text-foreground-muted rounded bg-accent/30 px-2 py-0.5 text-xs font-bold tracking-wide"
 						>
 							URL
 						</div>
@@ -49,12 +49,12 @@
 			</div>
 
 			<h3
-				class="mb-2 font-oxygen text-lg font-bold text-primary decoration-2 underline-offset-4 group-hover:underline"
+				class="font-oxygen mb-2 text-lg font-bold text-primary decoration-2 underline-offset-4 group-hover:underline"
 			>
 				{bookmark.title}
 			</h3>
 
-			<p class="mb-4 text-sm leading-relaxed text-foreground-muted">
+			<p class="text-foreground-muted mb-4 text-sm leading-relaxed">
 				{bookmark.description}
 			</p>
 

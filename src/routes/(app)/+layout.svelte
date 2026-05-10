@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import Popover from '$lib/components/ui/popover/Popover.svelte';
+	import Popover from '$lib/components/ui/popover/poooop.svelte';
 	let { children } = $props();
 </script>
 

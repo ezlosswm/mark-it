@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { ArrowRight, BadgeAlert, Bot, LayoutDashboard, Search, SearchCode } from '@lucide/svelte';
 	import FeatureItem, { type Feature } from './FeatureItem.svelte';
-	import Button from '../ui/button/Button.svelte';
+	import { Button } from '$lib/components/ui/button';
+	import { Input } from '$lib/components/ui/input';
 
 	const features: Feature[] = [
 		{
@@ -45,21 +46,21 @@
 	<div class="space-y-3">
 		<div class="flex items-center gap-3">
 			<BadgeAlert />
-			<p>Contextual categorization</p>
+			<p class="mt-0">Contextual categorization</p>
 		</div>
 
 		<div class="flex items-center gap-3">
 			<BadgeAlert />
-			<p>User-defined tagging rules</p>
+			<p class="mt-0">User-defined tagging rules</p>
 		</div>
 	</div>
 </FeatureItem>
 
 <FeatureItem feature={features[1]}>
 	<div class="relative">
-		<Search class="input-icon size-5" />
-		<input
-			class="flex w-full items-center gap-4 rounded-xl border border-border bg-background p-4 pl-12 text-sm shadow-sm"
+		<Search class="absolute top-1/2 left-4 size-5 -translate-y-1/2 text-muted-foreground" />
+		<Input
+			class="border border-border p-4 pl-12 shadow-sm"
 			placeholder="Search 'Design system articles'..."
 			disabled
 		/>
@@ -67,12 +68,7 @@
 </FeatureItem>
 
 <FeatureItem feature={features[2]}>
-	<Button
-		href="/"
-		class="flex items-center justify-start p-0 duration-400 hover:translate-x-2"
-		size="lg"
-		variant="link"
-	>
+	<Button href="/" class="p-0 duration-400 hover:translate-x-2" size="lg" variant="link">
 		Go to Your Board
 		<ArrowRight />
 	</Button>

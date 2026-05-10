@@ -16,12 +16,12 @@
 	} from '@lucide/svelte';
 
 	import { dashboard } from '$lib/components/dashboard/dashboard.svelte';
-	import Button from '../ui/button/Button.svelte';
+	import { Button } from '$lib/components/ui/button';
 	import Logo from '../ui/logo/Logo.svelte';
 	import { authClient } from '$lib/auth-client';
 	import { resolve } from '$app/paths';
 	import { goto } from '$app/navigation';
-	import { popover } from '../ui/popover/Popover.svelte';
+	import { popover } from '../ui/popover/poooop.svelte';
 
 	// This doesn't work
 	async function handleSignOut() {

@@ -1,18 +1,16 @@
 <script>
-	import Button from '../ui/button/Button.svelte';
+	import { Button } from '$lib/components/ui/button';
+	import { Badge } from '$lib/components/ui/badge';
 </script>
 
 <div class="hero-gradient flex flex-col items-center py-20 text-center">
 	<div class="mx-auto max-w-4xl space-y-8">
-		<span
-			class="inline-block rounded-full bg-accent-muted px-4 py-1.5 text-sm font-bold tracking-wider text-primary uppercase"
-			>Trusted by 20,000+ Power Users</span
-		>
-		<h1 class="text-5xl leading-[1.1] font-bold tracking-tight md:text-7xl">
+		<Badge class="h-8 px-4">Trusted by 20,000+ Power Users</Badge>
+		<h1 class="md:text-7xl">
 			Bookmark everything. <br />
 			<span class="text-accent"> Find it instantly. </span>
 		</h1>
-		<p class="mx-auto max-w-2xl text-xl leading-relaxed text-foreground-muted md:text-2xl">
+		<p class="mx-auto max-w-2xl text-xl leading-relaxed text-muted-foreground md:text-2xl">
 			The playful bookmark manager for organized minds. Save links, images, and snippets in one
 			beautiful place.
 		</p>
