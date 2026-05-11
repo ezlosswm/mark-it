@@ -56,6 +56,7 @@
 		"convex": "^1.35.1",
 		"convex-smart-tags": "^0.1.1",
 		"convex-svelte": "^0.0.12",
+		"mode-watcher": "^1.1.0",
 		"zod": "^4.3.6"
 	}
 }

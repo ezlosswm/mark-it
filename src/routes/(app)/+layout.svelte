@@ -5,6 +5,8 @@
 	import AppSidebar from '$lib/components/app-sidebar.svelte';
 	import SiteHeader from '$lib/components/site-header.svelte';
 
+	import { ModeWatcher } from 'mode-watcher';
+
 	let { data, children } = $props();
 </script>
 
@@ -23,3 +25,4 @@
 		<Popover data={page.data} />
 	</Sidebar.Provider>
 </div>
+<ModeWatcher />

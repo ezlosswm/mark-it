@@ -17,7 +17,7 @@
 <!-- Main dashboard -->
 <div class="relative flex h-screen flex-col">
 	<section class="px-6">
-		<div class="hide-scrollbar mb-4 flex gap-3 overflow-x-auto pb-2 md:hidden">
+		<!-- <div class="hide-scrollbar my-4 flex gap-3 overflow-x-auto pb-2 md:hidden">
 			{#each tags as filter}
 				<Button
 					size="sm"
@@ -27,7 +27,7 @@
 					{normalizeTag(filter.slug)}
 				</Button>
 			{/each}
-		</div>
+		</div> -->
 
 		<Bookmarks />
 

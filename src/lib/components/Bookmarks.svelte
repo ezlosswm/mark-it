@@ -5,6 +5,8 @@
 	import { useAuth, useQuery } from '@mmailaender/convex-svelte';
 	import { api } from '../../convex/_generated/api';
 	import { normalizeTag } from '$lib/tags';
+	import { Badge } from '$lib/components/ui/badge';
+	import * as Card from '$lib/components/ui/card';
 
 	const isFavorited = true;
 
@@ -17,63 +19,58 @@
 
 <div class="grid grid-cols-1 gap-4 py-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 	{#each bookmarks as bookmark}
-		<article
-			class="group min-h-48 rounded-xl border border-border p-6 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
-		>
-			<div class="mb-3 flex items-center justify-between">
-				<div class="flex w-full gap-2 truncate">
+		<Card.Root>
+			<Card.Header>
+				<Card.Description class="mb-3 flex gap-2 truncate">
 					{#if bookmark.tags?.length}
 						{#each bookmark.tags.slice(0, 5) as tag}
-							<div
-								class="text-foreground-muted rounded bg-accent/30 px-2 py-0.5 text-xs font-bold tracking-wide"
-							>
+							<Badge>
 								{normalizeTag(tag!.slug)}
-							</div>
+							</Badge>
 						{/each}
 					{:else}
-						<div
-							class="text-foreground-muted rounded bg-accent/30 px-2 py-0.5 text-xs font-bold tracking-wide"
-						>
-							URL
-						</div>
+						<Badge>URL</Badge>
 					{/if}
+				</Card.Description>
+				<div class="flex items-center justify-between">
+					<Card.Title class="flex-1">
+						<h4>
+							{bookmark.title}
+						</h4>
+					</Card.Title>
+					<Button variant="ghost" size="icon-lg">
+						<Bookmark
+							class="stroke-primary {isFavorited
+								? ''
+								: 'fill-primary grayscale-60 transition-colors group-hover:grayscale-0'}"
+						/>
+					</Button>
 				</div>
+			</Card.Header>
 
-				<button>
-					<Bookmark
-						class="stroke-accent {isFavorited
-							? 'fill-accent grayscale-60 transition-colors group-hover:grayscale-0'
-							: ''}"
-					/>
-				</button>
-			</div>
-
-			<h3
-				class="font-oxygen mb-2 text-lg font-bold text-primary decoration-2 underline-offset-4 group-hover:underline"
-			>
-				{bookmark.title}
-			</h3>
-
-			<p class="text-foreground-muted mb-4 text-sm leading-relaxed">
-				{bookmark.description}
-			</p>
-
-			<div class="flex items-center gap-2 text-sm text-primary">
-				<Link2 class="size-5 shrink-0" />
+			<Card.Content class="text-muted-foreground">{bookmark.description}</Card.Content>
+			<Card.Footer>
 				<Button
 					variant="link"
+					class="w-full min-w-0 justify-start overflow-hidden px-0"
 					href={bookmark.url}
-					class="min-w-0 truncate p-0 text-xs font-normal text-primary"
 					target="_blank"
 				>
-					{bookmark.url}
-				</Button>
-			</div>
-		</article>
-	{/each}
+					<Link2 class="size-5 shrink-0" />
 
-	<Button onclick={() => popover.toggleOpenState()} variant="ghost" class="bookmark-card min-h-56">
-		<div class="rounded-full bg-accent/20 p-3">
+					<span class="truncate">
+						{bookmark.url.toString()}
+					</span>
+				</Button>
+			</Card.Footer>
+		</Card.Root>
+	{/each}
+	<Button
+		onclick={() => popover.toggleOpenState()}
+		variant="outline"
+		class="bookmark-card min-h-48"
+	>
+		<div class="rounded-full bg-primary/10 p-3">
 			<Plus />
 		</div>
 		<span class="text-center font-bold tracking-wider">New Bookmark</span>
