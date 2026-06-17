@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Mail } from '@lucide/svelte';
-	import Button from '$lib/components/ui/button/Button.svelte';
+	import { Button } from '$lib/components/ui/button/index';
 	import type { PageData } from './$types';
 	import { superForm } from 'sveltekit-superforms';
 	import { zod4 } from 'sveltekit-superforms/adapters';
@@ -28,7 +28,7 @@
 	>
 		<div class="space-y-1">
 			<h2 class="text-2xl font-bold">Forgot Password</h2>
-			<p class="text-sm text-foreground-muted">We will email you a reset link</p>
+			<p class="text-foreground-muted text-sm">We will email you a reset link</p>
 		</div>
 
 		<form action="POST" onsubmit={handleForgotPassword} class="space-y-5" novalidate>
@@ -47,12 +47,10 @@
 				</div>
 
 				{#if $errors.email}
-					<p class="text-xs text-danger">{$errors.email}</p>
+					<p class="text-danger text-xs">{$errors.email}</p>
 				{/if}
 			</div>
-			<Button  class="w-full" type="submit">
-				Reset Password	
-			</Button>
+			<Button class="w-full" type="submit">Reset Password</Button>
 		</form>
 	</div>
 </main>
