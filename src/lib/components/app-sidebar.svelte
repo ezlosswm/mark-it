@@ -62,11 +62,9 @@
 			<Sidebar.MenuItem>
 				<Sidebar.MenuButton size="lg">
 					{#snippet child({ props })}
-						<a href="/dashboard" {...props}>
-							<div class="grid flex-1 text-start text-sm leading-tight">
-								<Logo />
-							</div>
-						</a>
+						<div class="grid flex-1 text-start text-sm leading-tight">
+							<Logo {...props} />
+						</div>
 					{/snippet}
 				</Sidebar.MenuButton>
 			</Sidebar.MenuItem>

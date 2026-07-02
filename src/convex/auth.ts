@@ -7,10 +7,7 @@ import { betterAuth } from 'better-auth/minimal';
 import { v } from 'convex/values';
 import authConfig from './auth.config';
 
-const siteUrl = process.env.SITE_URL ?? 'http://localhost:5173';
-const convexSiteUrl = process.env.PUBLIC_CONVEX_SITE_URL as string; // built-in, always set by Convex
-const isProd = process.env.NODE_ENV === 'production';
-
+const siteUrl = process.env.SITE_URL;
 const clientId = process.env.GOOGLE_CLIENT_ID;
 const clientSecret = process.env.GOOGLE_SECRET;
 
@@ -20,8 +17,8 @@ export const authComponent = createClient<DataModel>(components.betterAuth);
 
 export const createAuth = (ctx: GenericCtx<DataModel>) => {
 	return betterAuth({
-		baseURL: convexSiteUrl,
-		trustedOrigins: [siteUrl],
+		baseURL: siteUrl,
+		trustedOrigins: [siteUrl ?? 'http://localhost:5173'],
 		database: authComponent.adapter(ctx),
 		socialProviders: {
 			google: {
@@ -38,14 +35,7 @@ export const createAuth = (ctx: GenericCtx<DataModel>) => {
 		plugins: [
 			// The Convex plugin is required for Convex compatibility
 			convex({ authConfig })
-		],
-		advanced: {
-			crossSubDomainCookies: { enabled: isProd },
-			defaultCookieAttributes: {
-				sameSite: isProd ? 'none' : 'lax',
-				secure: isProd ? true : false
-			}
-		}
+		]
 	});
 };
 
