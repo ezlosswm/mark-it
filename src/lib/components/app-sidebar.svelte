@@ -73,7 +73,7 @@
 		</Sidebar.Menu>
 	</Sidebar.Header>
 	<Sidebar.Content>
-		<NavMain items={navData.navMain} />
+		<!-- <NavMain items={navData.navMain} /> -->
 	</Sidebar.Content>
 	<Sidebar.Footer>
 		<NavUser {user} />
