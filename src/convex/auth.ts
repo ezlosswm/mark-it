@@ -8,7 +8,7 @@ import { v } from 'convex/values';
 import authConfig from './auth.config';
 
 const siteUrl = process.env.SITE_URL ?? 'http://localhost:5173';
-const convexSiteUrl = process.env.CONVEX_SITE_URL as string; // built-in, always set by Convex
+const convexSiteUrl = process.env.PUBLIC_CONVEX_SITE_URL as string; // built-in, always set by Convex
 const isProd = process.env.NODE_ENV === 'production';
 
 const clientId = process.env.GOOGLE_CLIENT_ID;
