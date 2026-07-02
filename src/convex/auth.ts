@@ -16,6 +16,11 @@ const clientSecret = process.env.GOOGLE_SECRET;
 export const authComponent = createClient<DataModel>(components.betterAuth);
 
 export const createAuth = (ctx: GenericCtx<DataModel>) => {
+	console.log({
+		SITE_URL: process.env.SITE_URL,
+		NODE_ENV: process.env.NODE_ENV
+	});
+
 	return betterAuth({
 		baseURL: siteUrl,
 		trustedOrigins: [siteUrl ?? 'http://localhost:5173'],
