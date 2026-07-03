@@ -112,6 +112,52 @@ export const getBookmarks = query({
 	}
 });
 
+export const getBookmarkBySlug = query({
+	args: {
+		slug: v.string()
+	},
+	handler: async (ctx, args) => {
+		const identity = await ctx.auth.getUserIdentity();
+
+		if (!identity) {
+			throw new Error('Unauthorized');
+		}
+
+		const tag = await ctx.db
+			.query('tags')
+			.withIndex('by_slug', (q) => q.eq('userId', identity.subject).eq('slug', args.slug))
+			.unique();
+
+		if (!tag) {
+			return [];
+		}
+
+		const bookmarkTags = await ctx.db
+			.query('bookmarkTags')
+			.withIndex('by_tag', (q) => q.eq('tagId', tag._id))
+			.collect();
+
+		return await Promise.all(
+			bookmarkTags.map(async (bt) => {
+				const bookmark = await ctx.db.get(bt.bookmarkId);
+				if (!bookmark) return null;
+
+				const joins = await ctx.db
+					.query('bookmarkTags')
+					.withIndex('by_bookmark', (q) => q.eq('bookmarkId', bookmark._id))
+					.collect();
+
+				const tags = await Promise.all(joins.map((join) => ctx.db.get(join.tagId)));
+
+				return {
+					...bookmark,
+					tags: tags.filter(Boolean)
+				};
+			})
+		);
+	}
+});
+
 export const getTags = query({
 	args: {},
 	handler: async (ctx) => {

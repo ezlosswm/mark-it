@@ -4,32 +4,52 @@
 	import { Plus } from '@lucide/svelte';
 	import { Button } from '$lib/components/ui/button';
 	import type { PageData } from './$types';
-	import { useQuery } from '@mmailaender/convex-svelte';
+	import { useAuth, useQuery } from '@mmailaender/convex-svelte';
 	import { api } from '$convex/_generated/api';
 	import { normalizeTag } from '$lib/tags';
 
+	const auth = useAuth();
+	let selectedSlug: string | null = $state(null);
+
+	const bookmarksResponse = useQuery(api.bookmarks.getBookmarks, () =>
+		auth.isAuthenticated ? {} : 'skip'
+	);
+
+	const filteredBookmarksResponse = useQuery(api.bookmarks.getBookmarkBySlug, () =>
+		selectedSlug ? { slug: selectedSlug } : 'skip'
+	);
+
+	let bookmarks = $derived(selectedSlug ? filteredBookmarksResponse.data : bookmarksResponse.data);
+
 	const tagsResponse = useQuery(api.bookmarks.getTags);
 	let tags = $derived(tagsResponse.data);
-
-	const { data }: { data: PageData } = $props();
 </script>
 
 <!-- Main dashboard -->
 <div class="relative flex h-screen flex-col">
-	<section class="px-6">
-		<!-- <div class="hide-scrollbar my-4 flex gap-3 overflow-x-auto pb-2 md:hidden">
+	<section class="px-3 md:px-6">
+		<div class="hide-scrollbar my-4 flex gap-3 overflow-x-auto pb-2 md:hidden">
+			<Button
+				size="sm"
+				onclick={() => (selectedSlug = null)}
+				variant="outline"
+				class="rounded-full text-xs first:bg-primary first:text-background first:hover:bg-primary/80 first:hover:opacity-80"
+			>
+				All
+			</Button>
 			{#each tags as filter}
 				<Button
 					size="sm"
+					onclick={() => (selectedSlug = filter.slug)}
 					variant="outline"
-					class="rounded-full first:bg-primary first:text-background first:hover:bg-primary/80 first:hover:opacity-80"
+					class="rounded-full text-xs first:bg-primary first:text-background first:hover:bg-primary/80 first:hover:opacity-80"
 				>
 					{normalizeTag(filter.slug)}
 				</Button>
 			{/each}
-		</div> -->
+		</div>
 
-		<Bookmarks />
+		<Bookmarks {bookmarks} />
 
 		<!-- ! Hovering button -->
 		<div class="fixed right-4 bottom-4 z-40 -translate-4">

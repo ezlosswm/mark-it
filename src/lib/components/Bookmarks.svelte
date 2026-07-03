@@ -10,12 +10,12 @@
 	import type { Id } from '$convex/_generated/dataModel';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
 
-	const auth = useAuth();
-	const bookmarksResponse = useQuery(api.bookmarks.getBookmarks, () =>
-		auth.isAuthenticated ? {} : 'skip'
-	);
+	// const auth = useAuth();
+	// const bookmarksResponse = useQuery(api.bookmarks.getBookmarks, () =>
+	// 	auth.isAuthenticated ? {} : 'skip'
+	// );
 
-	let bookmarks = $derived(bookmarksResponse.data);
+	// let bookmarks = $derived(bookmarksResponse.data);
 
 	const toggleBookmarkFavoriteMutation = useMutation(api.bookmarks.toggleBookmarkFavorite);
 	const toggleBookmarkFavorite = async (bookmarkId: Id<'bookmarks'>) => {
@@ -26,22 +26,26 @@
 	const deleteBookmark = async (bookmarkId: Id<'bookmarks'>) => {
 		await deleteBookmarkMutation({ bookmarkId });
 	};
+
+	let { bookmarks } = $props();
 </script>
 
 <div class="grid grid-cols-1 gap-4 py-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 	{#each bookmarks as bookmark}
-		<Card.Root>
+		<Card.Root class="min-h-52">
 			<Card.Header>
-				<Card.Description class="mb-3 flex justify-between gap-2 truncate">
-					{#if bookmark.tags?.length}
-						{#each bookmark.tags.slice(0, 5) as tag}
-							<Badge>
-								{normalizeTag(tag!.slug)}
-							</Badge>
-						{/each}
-					{:else}
-						<Badge>URL</Badge>
-					{/if}
+				<Card.Description class="mb-3 flex items-center justify-between gap-2 truncate">
+					<div class="space-x-1 truncate">
+						{#if bookmark.tags?.length}
+							{#each bookmark.tags.slice(0, 5) as tag}
+								<Badge>
+									{normalizeTag(tag!.slug)}
+								</Badge>
+							{/each}
+						{:else}
+							<Badge>URL</Badge>
+						{/if}
+					</div>
 
 					<DropdownMenu.Root>
 						<DropdownMenu.Trigger><Ellipsis /></DropdownMenu.Trigger>
@@ -94,7 +98,11 @@
 			</Card.Footer>
 		</Card.Root>
 	{/each}
-	<Button onclick={() => popover.toggleOpenState()} variant="outline" class="bookmark-card h-full">
+	<Button
+		onclick={() => popover.toggleOpenState()}
+		variant="outline"
+		class="bookmark-card h-full min-h-52"
+	>
 		<div class="rounded-full bg-primary/10 p-3">
 			<Plus />
 		</div>
