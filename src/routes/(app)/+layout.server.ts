@@ -1,13 +1,10 @@
-import { redirect } from '@sveltejs/kit';
+import type { LayoutServerLoad } from './$types';
 
-export const load = async (event) => {
-	const session = await event.fetch('/api/auth/get-session').then((res) => res.json());
-
-	if (!session?.user) {
-		throw redirect(302, '/login');
+export const load: LayoutServerLoad = async ({ url }) => {
+	// OAuth completes with a one-time token; the client verifies it in onMount.
+	if (url.searchParams.has('ott')) {
+		return { user: null };
 	}
 
-	return {
-		user: session.user
-	};
+	return { user: null };
 };

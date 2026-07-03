@@ -32,7 +32,7 @@
 		<Bookmarks />
 
 		<!-- ! Hovering button -->
-		<div class="fixed right-8 bottom-8 z-40 -translate-8">
+		<div class="fixed right-4 bottom-4 z-40 -translate-4">
 			<Button
 				onclick={() => popover.toggleOpenState()}
 				size="icon-lg"

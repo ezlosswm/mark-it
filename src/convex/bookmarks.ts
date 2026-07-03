@@ -34,7 +34,8 @@ export const saveBookmark = mutation({
 				userId: identity.subject,
 				url: args.url,
 				title: args.title,
-				description: args.description ?? ''
+				description: args.description ?? '',
+				isFavorite: false
 			});
 		}
 
@@ -124,5 +125,49 @@ export const getTags = query({
 			.query('tags')
 			.withIndex('by_user', (q) => q.eq('userId', identity.subject))
 			.collect();
+	}
+});
+
+export const toggleBookmarkFavorite = mutation({
+	args: {
+		bookmarkId: v.id('bookmarks')
+	},
+	handler: async (ctx, args) => {
+		const identity = await ctx.auth.getUserIdentity();
+		if (!identity) {
+			throw new Error('Unauthorized');
+		}
+
+		const existing = await ctx.db.get(args.bookmarkId);
+
+		if (!existing) {
+			throw new Error('Bookmark not found');
+		}
+
+		await ctx.db.patch(args.bookmarkId, {
+			isFavorite: !existing.isFavorite
+		});
+
+		return args.bookmarkId;
+	}
+});
+
+export const deleteBookmark = mutation({
+	args: {
+		bookmarkId: v.id('bookmarks')
+	},
+	handler: async (ctx, args) => {
+		const identity = await ctx.auth.getUserIdentity();
+		if (!identity) {
+			throw new Error('Unauthorized');
+		}
+
+		const existing = await ctx.db.get(args.bookmarkId);
+
+		if (!existing) {
+			throw new Error('Bookmark not found');
+		}
+
+		return ctx.db.delete(args.bookmarkId);
 	}
 });

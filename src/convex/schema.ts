@@ -6,6 +6,7 @@ export default defineSchema({
 		userId: v.string(),
 		url: v.string(),
 		title: v.string(),
+		isFavorite: v.boolean(),
 		description: v.optional(v.string())
 	})
 		.index('by_user', ['userId'])
