@@ -3,7 +3,6 @@
 	import { popover } from '$lib/components/ui/popover/poooop.svelte';
 	import { Plus } from '@lucide/svelte';
 	import { Button } from '$lib/components/ui/button';
-	import type { PageData } from './$types';
 	import { useAuth, useQuery } from '@mmailaender/convex-svelte';
 	import { api } from '$convex/_generated/api';
 	import { normalizeTag } from '$lib/tags';

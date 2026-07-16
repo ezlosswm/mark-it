@@ -19,7 +19,7 @@
 				<Button href="/register" variant="link">Create An Account</Button>
 			</div>
 		{:else}
-			<Button href="/register">Sign Up</Button>
+			<Button href="/login">Log In</Button>
 		{/if}
 	</nav>
 </header>

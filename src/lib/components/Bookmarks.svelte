@@ -2,20 +2,13 @@
 	import { Bookmark, Ellipsis, Link2, Plus } from '@lucide/svelte';
 	import { Button } from '$lib/components/ui/button';
 	import { popover } from '$lib/components/ui/popover/poooop.svelte';
-	import { useAuth, useMutation, useQuery } from '@mmailaender/convex-svelte';
+	import { useMutation } from '@mmailaender/convex-svelte';
 	import { api } from '../../convex/_generated/api';
 	import { normalizeTag } from '$lib/tags';
 	import { Badge } from '$lib/components/ui/badge';
 	import * as Card from '$lib/components/ui/card';
 	import type { Id } from '$convex/_generated/dataModel';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
-
-	// const auth = useAuth();
-	// const bookmarksResponse = useQuery(api.bookmarks.getBookmarks, () =>
-	// 	auth.isAuthenticated ? {} : 'skip'
-	// );
-
-	// let bookmarks = $derived(bookmarksResponse.data);
 
 	const toggleBookmarkFavoriteMutation = useMutation(api.bookmarks.toggleBookmarkFavorite);
 	const toggleBookmarkFavorite = async (bookmarkId: Id<'bookmarks'>) => {

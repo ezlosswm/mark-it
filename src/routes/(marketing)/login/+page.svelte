@@ -2,8 +2,18 @@
 	import LoginForm from '$lib/components/forms/login-form.svelte';
 	import { BookMarked } from '@lucide/svelte';
 	import type { PageData } from './$types';
+	import { useAuth } from '@mmailaender/convex-svelte';
+	import { goto } from '$app/navigation';
 
 	const { data }: { data: PageData } = $props();
+
+	const auth = useAuth();
+
+	$effect(() => {
+		if (auth.isAuthenticated) {
+			goto('/dashboard');
+		}
+	});
 </script>
 
 <main class="mx-auto w-full max-w-lg p-3 md:p-6">
@@ -30,6 +40,10 @@
 
 				<p class="text-sm text-muted-foreground">Ready to organize your world?</p>
 			</div>
+		</div>
+
+		<div class="rounded-lg bg-foreground/5 p-3 text-center">
+			<div class="text-sm italic">Demo Account: <br />demo@demo.com<br /> admin123</div>
 		</div>
 
 		<LoginForm {data} />

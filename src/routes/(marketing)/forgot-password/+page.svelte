@@ -5,7 +5,10 @@
 	import { superForm } from 'sveltekit-superforms';
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import { forgotPasswordSchema } from '$lib/components/forms/schema';
+
 	const { data }: { data: PageData } = $props();
+
+	// svelte-ignore state_referenced_locally
 	const { form, errors, validateForm } = superForm(data.form, {
 		validators: zod4(forgotPasswordSchema)
 	});

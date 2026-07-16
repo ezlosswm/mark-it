@@ -11,13 +11,14 @@
 	import { resolve } from '$app/paths';
 
 	let { data } = $props();
+
+	// svelte-ignore state_referenced_locally
 	const form = superForm(data.form, {
 		validators: zod4(registerUserSchema)
 	});
 
 	const { form: formData, validateForm } = form;
 
-	let error = $state<string | null>(null);
 	let isLoading = $state(false);
 	async function handleRegister(e: Event) {
 		e.preventDefault();
@@ -41,14 +42,19 @@
 						goto(resolve('/dashboard'));
 					},
 					onError: (ctx) => {
-						error = ctx.error.message || 'Unable to register user';
 						isLoading = false;
+
+						console.error({
+							code: ctx.error.code,
+							message: ctx.error.message,
+							status: ctx.error.status,
+							statusText: ctx.error.statusText
+						});
 					}
 				}
 			);
 		} catch (err) {
 			console.error('Registration failed: ', err);
-			error = 'Unable to register user';
 		} finally {
 			isLoading = false;
 		}
@@ -57,9 +63,6 @@
 
 <form onsubmit={handleRegister} novalidate>
 	<div class="flex w-full flex-col gap-5">
-		{#if error}
-			<p class="text-sm text-destructive">{error}</p>
-		{/if}
 		<Form.Field {form} name="name" class="flex flex-col gap-2">
 			<Form.Control>
 				{#snippet children({ props })}
@@ -76,7 +79,7 @@
 					</div>
 				{/snippet}
 			</Form.Control>
-			<Form.FieldErrors />
+			<Form.FieldErrors class="font-normal" />
 		</Form.Field>
 
 		<Form.Field {form} name="email" class="flex flex-col gap-2">
@@ -95,7 +98,7 @@
 					</div>
 				{/snippet}
 			</Form.Control>
-			<Form.FieldErrors />
+			<Form.FieldErrors class="font-normal" />
 		</Form.Field>
 
 		<Form.Field {form} name="password" class="flex flex-col gap-2">
@@ -115,7 +118,7 @@
 					</div>
 				{/snippet}
 			</Form.Control>
-			<Form.FieldErrors />
+			<Form.FieldErrors class="font-normal" />
 		</Form.Field>
 
 		<Form.Button disabled={isLoading}>

@@ -1,11 +1,21 @@
 <script lang="ts">
 	import RegistrationForm from '$lib/components/forms/registration-form.svelte';
 	import type { PageData } from './$types';
+	import { useAuth } from '@mmailaender/convex-svelte';
+	import { goto } from '$app/navigation';
 
 	const { data }: { data: PageData } = $props();
+
+	const auth = useAuth();
+
+	$effect(() => {
+		if (auth.isAuthenticated) {
+			goto('/dashboard');
+		}
+	});
 </script>
 
-<main class="mx-auto max-w-360 p-6">
+<main class="mx-auto max-w-360 p-3 md:p-6">
 	<div
 		class="mx-auto grid w-full max-w-5xl grid-cols-1 items-center gap-12 rounded-3xl border border-border bg-card p-6 shadow-sm md:p-12 lg:grid-cols-2"
 	>

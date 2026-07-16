@@ -7,17 +7,18 @@
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import { loginUserSchema } from './schema';
 	import { authClient, signInWithGoogle } from '$lib/auth-client';
-	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
+	import { goto } from '$app/navigation';
 
 	const { data } = $props();
+
+	// svelte-ignore state_referenced_locally
 	const form = superForm(data.form, {
 		validators: zod4(loginUserSchema)
 	});
 
 	const { form: formData, validateForm } = form;
 
-	let error = $state<string | null>(null);
 	let isLoading = $state(false);
 	async function handleLogin(e: Event) {
 		e.preventDefault();
@@ -41,30 +42,27 @@
 						return;
 					},
 					onError: (ctx) => {
-						error = ctx.error.message || 'Invalid email or password';
 						isLoading = false;
+
+						console.error({
+							code: ctx.error.code,
+							message: ctx.error.message,
+							status: ctx.error.status,
+							statusText: ctx.error.statusText
+						});
 					}
 				}
 			);
 		} catch (err) {
 			console.error('Unable to login.', err);
-			error = 'Unable to login.';
 		} finally {
 			isLoading = false;
 		}
 	}
 </script>
 
-{#if error}
-	<span class="text-danger text-xs">
-		{error}
-	</span>
-{/if}
 <form onsubmit={handleLogin} novalidate>
 	<div class="flex w-full flex-col gap-5">
-		{#if error}
-			<p class="text-sm text-destructive">{error}</p>
-		{/if}
 		<Form.Field {form} name="email" class="flex flex-col gap-2">
 			<Form.Control>
 				{#snippet children({ props })}
@@ -76,12 +74,13 @@
 							type="email"
 							class="pl-12"
 							name="email"
-							placeholder="youremail@example.com"
+							placeholder="demo@demo.com"
+							bind:value={$formData.email}
 						/>
 					</div>
 				{/snippet}
 			</Form.Control>
-			<Form.FieldErrors />
+			<Form.FieldErrors class="font-normal" />
 		</Form.Field>
 
 		<Form.Field {form} name="password" class="flex flex-col gap-2">
@@ -96,11 +95,12 @@
 							class="pl-12"
 							name="password"
 							placeholder="••••••••"
+							bind:value={$formData.password}
 						/>
 					</div>
 				{/snippet}
 			</Form.Control>
-			<Form.FieldErrors />
+			<Form.FieldErrors class="font-normal" />
 		</Form.Field>
 
 		<Form.Button disabled={isLoading}>
